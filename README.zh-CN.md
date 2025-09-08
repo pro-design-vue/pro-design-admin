@@ -28,7 +28,7 @@ Pro Design Admin 是一个免费开源的中后台模板，它采用了最新的
 
 ## 预览
 
-- [Pro Design Admin](https://pro-design-admin.shene.org/) - 完整版中文站点
+- [Pro Design Admin](https://pro-design-admin.shene.org.cn/) - 完整版中文站点
 
 <div align="center">
   <img width="100%" src="https://pro-design.shene.org.cn/guide/admin_02.png">

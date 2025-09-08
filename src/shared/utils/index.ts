@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 09:56:36
  * @LastEditors: shen
- * @LastEditTime: 2025-08-21 13:31:10
+ * @LastEditTime: 2025-09-08 17:25:53
  * @Description:
  */
 export * from './tree'
@@ -34,13 +34,15 @@ export * from './update-css-variables'
 export * from './unmount-global-loading'
 export * from './find-menu-by-path'
 export * from './object-to-empty'
-export { default as cloneDeep } from 'lodash-es/cloneDeep'
-export { default as merge } from 'lodash-es/merge'
-export { default as debounce } from 'lodash-es/debounce'
-export { default as get } from 'lodash-es/get'
-export { default as isEqual } from 'lodash-es/isequal'
-export { default as set } from 'lodash-es/set'
-export { default as upperFirst } from 'lodash-es/upperFirst'
-export { default as pick } from 'lodash-es/pick'
-export { default as kebabCase } from 'lodash-es/kebabCase'
-export { default as findIndex } from 'lodash-es/findIndex'
+export {
+  cloneDeep,
+  merge,
+  debounce,
+  get,
+  isEqual,
+  set,
+  upperFirst,
+  pick,
+  kebabCase,
+  findIndex,
+} from 'lodash-unified'
