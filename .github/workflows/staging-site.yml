@@ -43,6 +43,12 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
+      - name: Get version
+        run: echo "TAG_VERSION=0.0.0-staging.${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Get git head
+        run: echo "GIT_HEAD=${GITHUB_SHA}" >> $GITHUB_ENV
+
       - name: Compile Pro Design Admin
         run: pnpm build
         env:
