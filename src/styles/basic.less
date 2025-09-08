@@ -1,0 +1,42 @@
+.outline-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  font-size: 20px;
+  cursor: pointer;
+  outline: hsl(var(--pro-border)) solid 1px;
+  border-radius: calc(var(--pro-radius) - 2px);
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    width: 1px;
+    height: 0;
+    outline: transparent solid 2px;
+    content: '';
+    border-radius: calc(var(--pro-radius) - 4px);
+    opacity: 0;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    transition-property: all;
+    animation-duration: 300ms;
+  }
+
+  &&-active {
+    outline: hsl(var(--pro-primary)) solid 2px;
+  }
+
+  &:not(&-active):hover::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0.25rem;
+    outline-color: hsl(var(--pro-primary));
+    opacity: 1;
+  }
+}
