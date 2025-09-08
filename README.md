@@ -28,7 +28,7 @@ Pro Design Admin is a free and open source middle and back-end template. Using t
 
 ## Preview
 
-- [Pro Design Admin](https://pro-design-admin.shene.org/) - Full version Chinese site
+- [Pro Design Admin](https://pro-design-admin.shene.org.cn/) - Full version Chinese site
 
 <div align="center">
   <img width="100%" src="https://pro-design.shene.org.cn/guide/admin_02.png">
