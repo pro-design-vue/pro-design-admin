@@ -1,2 +1,0 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/nprogress-D2zvhn0w.js","assets/index-BubrmqFj.js"])))=>i.map(i=>d[i]);
-import{_ as o}from"./index-BubrmqFj.js";let r=null;async function n(){return r||(r=await o(()=>import("./nprogress-D2zvhn0w.js").then(s=>s.n),__vite__mapDeps([0,1])),r.configure({showSpinner:!0,speed:300}),r)}async function e(){(await n())?.start()}async function a(){(await n())?.done()}export{a,e as s};
