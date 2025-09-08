@@ -16,7 +16,6 @@
 
 Pro Design Admin 是一个免费开源的中后台模板，它采用了最新的 Vue 3、Vite、TypeScript 等主流技术开发，开箱即用，可用于中后台前端开发，也适合学习参考。
 
-
 ## 特性
 
 - **最新技术栈**：使用 Vue3/vite 等前端前沿技术开发
@@ -33,7 +32,6 @@ Pro Design Admin 是一个免费开源的中后台模板，它采用了最新的
 <div align="center">
   <img width="100%" src="https://pro-design.shene.org.cn/guide/admin_02.png">
 </div>
-
 
 ## 文档
 
@@ -89,8 +87,8 @@ pnpm build
 支持现代浏览器，不支持 IE
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| :-: | :-: | :-: | :-: |
-| last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                            last 2 versions                                                                                            |                                                                                                  last 2 versions                                                                                                  |                                                                                                last 2 versions                                                                                                |                                                                                                last 2 versions                                                                                                |
 
 ## 维护者
 
