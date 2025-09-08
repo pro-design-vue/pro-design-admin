@@ -51,7 +51,7 @@ jobs:
       - name: Deploy staging website
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          token: ${{ secrets.PRO_ADMIN_TOKEN }}
+          token: ${{ secrets.PRO_BOT_TOKEN }}
           branch: main
           folder: dist
           repository-name: pro-design-vue/admin-staging
