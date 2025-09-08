@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2023-10-22 11:04:05
  * @LastEditors: shen
- * @LastEditTime: 2025-08-26 15:56:38
+ * @LastEditTime: 2025-09-08 20:55:14
  * @Description:
  */
 import { loadEnv } from 'vite'
@@ -13,6 +13,9 @@ import { createPlugins } from './plugin'
 import { VITE_OUTPUT_DIR } from './constant'
 
 import type { ConfigEnv } from 'vite'
+
+const INVALID_CHAR_REGEX = /[\x00-\x1F\x7F<>*#"{}|^[\]`;?:&=+$,]/g
+const DRIVE_LETTER_REGEX = /^[a-z]:/i
 
 export const createViteConfig = async (root: string, { command, mode }: ConfigEnv) => {
   const env = loadEnv(mode, root)
@@ -49,6 +52,16 @@ export const createViteConfig = async (root: string, { command, mode }: ConfigEn
       cssTarget: 'chrome80',
       outDir: VITE_OUTPUT_DIR,
       chunkSizeWarningLimit: 2000,
+      rollupOptions: {
+        output: {
+          // https://github.com/rollup/rollup/blob/master/src/utils/sanitizeFileName.ts
+          sanitizeFileName(name) {
+            const match = DRIVE_LETTER_REGEX.exec(name)
+            const driveLetter = match ? match[0] : ''
+            return driveLetter + name.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, '')
+          },
+        },
+      },
     },
     plugins,
   }
