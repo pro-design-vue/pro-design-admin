@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://github.com/anncwb/vue-vben-admin">
+  <a href="https://github.com/pro-design-vue/pro-design-admin">
      <img width="200px" src="https://pro-design.shene.org.cn/logo.png">
   </a>
   <br>

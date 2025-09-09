@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 09:12:34
  * @LastEditors: shen
- * @LastEditTime: 2025-09-02 15:53:14
+ * @LastEditTime: 2025-09-09 09:17:15
  * @Description:
 -->
 <script setup lang="ts">
@@ -149,7 +149,7 @@ const trendItems: WorkbenchTrendItem[] = [
     avatar: 'svg:avatar-4',
     content: `发表文章 <a>如何编写一个Vite插件</a> `,
     date: '2天前',
-    title: 'Vben',
+    title: 'Shen',
   },
   {
     avatar: 'svg:avatar-1',

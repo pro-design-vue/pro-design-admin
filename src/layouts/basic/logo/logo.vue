@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-16 13:26:32
  * @LastEditors: shen
- * @LastEditTime: 2025-06-22 13:37:46
+ * @LastEditTime: 2025-09-09 09:17:08
  * @Description:
 -->
 <script setup lang="ts">
@@ -36,7 +36,7 @@ interface Props {
 }
 
 defineOptions({
-  name: 'VbenLogo',
+  name: 'Logo',
 })
 
 withDefaults(defineProps<Props>(), {
