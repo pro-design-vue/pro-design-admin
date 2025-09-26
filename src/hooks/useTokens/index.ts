@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-06 09:26:03
  * @LastEditors: shen
- * @LastEditTime: 2025-07-03 09:39:32
+ * @LastEditTime: 2025-09-12 14:18:33
  * @Description:
  */
 import { reactive, watch } from 'vue'
@@ -38,8 +38,8 @@ export function useDesignTokens() {
   })
 
   const getCssVariableValue = (variable: string, isColor: boolean = true) => {
-    const prefixCls = preferences?.app?.prefixCls || DEFAULT_NAMESPACE
-    const value = rootStyles.getPropertyValue(`--${prefixCls}-${variable}`)
+    // const prefixCls = preferences?.app?.prefixCls || DEFAULT_NAMESPACE
+    const value = rootStyles.getPropertyValue(`--${DEFAULT_NAMESPACE}-${variable}`)
     return isColor ? `hsl(${value})` : value
   }
 
