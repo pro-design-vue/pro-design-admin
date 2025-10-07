@@ -1,1 +1,0 @@
-import{P as a}from"./index-Drxe6vRf.js";import{Y as r}from"./basic-D1XeoARd.js";import{d as e,b6 as s,a4 as n,b7 as c}from"./index-C8kcDjv6.js";import"./load-Dr1Llitb.js";const d=e({__name:"not-found",setup(p){const o=r(),t=()=>{o.push("/")};return(u,m)=>(c(),s(n(a),{status:"404",onBack:t}))}});export{d as default};
