@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 15:02:08
  * @LastEditors: shen
- * @LastEditTime: 2025-09-04 16:14:33
+ * @LastEditTime: 2025-10-14 11:18:27
  * @Description:
 -->
 <script setup lang="ts">
@@ -12,7 +12,7 @@ import { App } from 'ant-design-vue'
 import { $t, i18n } from '@/shared/locales'
 import { useAuthStore } from '@/stores'
 import { ProLayout } from 'pro-design-vue'
-import { SquarePenIcon, UserPenIcon } from '@/icons'
+import { BookOpenTextIcon, MdiGithub } from '@/icons'
 import { LayoutLogo } from './logo'
 import { LayoutContent, LayoutContentSpinner } from './content'
 import { LayoutMenu, LayoutMixedMenu, useExtraMenu, useMixedMenu } from './menu'
@@ -29,6 +29,7 @@ import { LayoutHeader } from './header'
 import { LayoutTabbar } from './tabbar'
 import { LayoutFooter } from './footer'
 import { BackTop } from './back-top'
+import { DOC_URL, ADMIN_GITHUB_URL, COMPONENT_GITHUB_URL } from '@/shared/constants'
 import { preferences, updatePreferences, usePreferences } from '@/shared/preferences'
 import DefaultLogo from '@/assets/logo_small.png'
 import DefaultAvatar from '@/assets/avatar-v1.webp'
@@ -172,14 +173,19 @@ const avatar = computed(() => {
 
 const menus = computed(() => [
   {
-    key: 'updateUserInfo',
-    icon: UserPenIcon,
-    label: $t('ui.widgets.updateUserInfo'),
+    key: 'document',
+    icon: BookOpenTextIcon,
+    label: $t('ui.widgets.document'),
   },
   {
-    key: 'updatePassword',
-    icon: SquarePenIcon,
-    label: $t('ui.widgets.updatePassword'),
+    key: 'admin',
+    icon: MdiGithub,
+    label: 'Pro Design Admin',
+  },
+  {
+    key: 'vue',
+    icon: MdiGithub,
+    label: 'Pro Design Vue',
   },
 ])
 
@@ -189,11 +195,14 @@ const handleLogout = async () => {
 
 const handleMenuClcik = (key: string | number) => {
   switch (key) {
-    case 'updateUserInfo':
-      console.log('修改用户信息')
+    case 'document':
+      window.open(DOC_URL)
       break
-    case 'updatePassword':
-      console.log('修改密码')
+    case 'admin':
+      window.open(ADMIN_GITHUB_URL)
+      break
+    case 'vue':
+      window.open(COMPONENT_GITHUB_URL)
       break
   }
 }

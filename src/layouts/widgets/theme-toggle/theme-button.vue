@@ -21,26 +21,9 @@ function toggleTheme(event: MouseEvent) {
     isDark.value = !isDark.value
     return
   }
-  const x = event.clientX
-  const y = event.clientY
-  const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
-  // @ts-ignore startViewTransition
-  const transition = document.startViewTransition(async () => {
+  document.startViewTransition(async () => {
     isDark.value = !isDark.value
     await nextTick()
-  })
-  transition.ready.then(() => {
-    const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
-    document.documentElement.animate(
-      {
-        clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
-      },
-      {
-        duration: 450,
-        easing: 'ease-in',
-        pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)',
-      },
-    )
   })
 }
 </script>

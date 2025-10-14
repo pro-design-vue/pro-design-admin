@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 16:33:00
  * @LastEditors: shen
- * @LastEditTime: 2025-09-02 15:53:32
+ * @LastEditTime: 2025-10-14 09:01:50
  * @Description:
 -->
 <script setup lang="ts">
@@ -16,12 +16,9 @@ import {
   type ProTableRequest,
   ProFieldType,
 } from 'pro-design-vue'
-import { Card, Input } from 'ant-design-vue'
 import { sleep } from '@/shared/utils'
-import { FullscreenOutlined, EllipsisOutlined } from '@ant-design/icons-vue'
+import { EllipsisOutlined } from '@ant-design/icons-vue'
 import { computed, ref } from 'vue'
-import Tab1 from './tab1.vue'
-import Tab2 from './tab2.vue'
 
 const params = ref({
   tab: 'tab1',
@@ -253,7 +250,6 @@ const tabList = ref([
               <EllipsisOutlined />
             </template>
           </ProButton>
-          <FullscreenOutlined style="font-size: 16px" />
         </template>
       </ProTable>
     </template>

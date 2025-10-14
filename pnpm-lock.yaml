@@ -69,8 +69,8 @@ importers:
         specifier: ^4.3.0
         version: 4.5.0(pinia@3.0.3(typescript@5.8.3)(vue@3.5.18(typescript@5.8.3)))
       pro-design-vue:
-        specifier: 1.0.0
-        version: 1.0.0(ant-design-vue@4.2.6(vue@3.5.18(typescript@5.8.3)))(lodash@4.17.21)(vue@3.5.18(typescript@5.8.3))
+        specifier: ^1.2.3
+        version: 1.2.3(ant-design-vue@4.2.6(vue@3.5.18(typescript@5.8.3)))(lodash@4.17.21)(vue@3.5.18(typescript@5.8.3))
       qs:
         specifier: ^6.14.0
         version: 6.14.0
@@ -4029,8 +4029,8 @@ packages:
     resolution: {integrity: sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg==}
     engines: {node: '>=18'}
 
-  pro-design-vue@1.0.0:
-    resolution: {integrity: sha512-ASqkjVyiNY182i0ecXVcAd41SnjMVFtSC8oYKYh3W6W80fxhQ0oza4vqc6Tsavt0t1oSEwozq+BcmWvp95IB3A==}
+  pro-design-vue@1.2.3:
+    resolution: {integrity: sha512-+wSAxTUlL9h9QT1EXkhrUSxO9sqUfoFA1yU4vGnfbt/Mpg15CUxd4emiA7rgTxkvb+n3AMHuCqIGu2uAUSkWew==}
     peerDependencies:
       ant-design-vue: ^4.2.0
       vue: ^3.5.0
@@ -9073,7 +9073,7 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  pro-design-vue@1.0.0(ant-design-vue@4.2.6(vue@3.5.18(typescript@5.8.3)))(lodash@4.17.21)(vue@3.5.18(typescript@5.8.3)):
+  pro-design-vue@1.2.3(ant-design-vue@4.2.6(vue@3.5.18(typescript@5.8.3)))(lodash@4.17.21)(vue@3.5.18(typescript@5.8.3)):
     dependencies:
       '@ant-design/colors': 7.2.1
       '@ant-design/icons-vue': 7.0.1(vue@3.5.18(typescript@5.8.3))

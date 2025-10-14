@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-25 13:41:05
  * @LastEditors: shen
- * @LastEditTime: 2025-06-25 13:55:16
+ * @LastEditTime: 2025-10-13 10:08:00
  * @Description:
 -->
 <script setup lang="ts">
@@ -12,16 +12,16 @@ defineOptions({
   name: 'PreferenceColorMode',
 })
 
-const modelValue = defineModel<string | undefined>('themeRadius', {
-  default: '8',
+const modelValue = defineModel<number | undefined>('themeBorderRadius', {
+  default: 8,
 })
 
 const items = [
-  { label: '0px', value: '0' },
-  { label: '4px', value: '4' },
-  { label: '8px', value: '8' },
-  { label: '12px', value: '12' },
-  { label: '16px', value: '16' },
+  { label: '0px', value: 0 },
+  { label: '4px', value: 4 },
+  { label: '8px', value: 8 },
+  { label: '12px', value: 12 },
+  { label: '16px', value: 16 },
 ]
 </script>
 

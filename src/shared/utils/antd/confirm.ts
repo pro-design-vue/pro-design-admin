@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2024-01-04 11:47:15
  * @LastEditors: shen
- * @LastEditTime: 2025-08-26 20:53:30
+ * @LastEditTime: 2025-10-13 10:38:04
  * @Description:
  */
 import { Modal, type ModalFuncProps } from 'ant-design-vue'
@@ -40,7 +40,7 @@ export const confirm = (props: Omit<ModalFuncProps, 'type'> & { type?: ConfirmTy
             : ExclamationCircleOutlined,
         {
           style: {
-            color: type === 'danger' ? 'hsl(var(--pro-destructive))' : 'hsl(var(--pro-warning))',
+            color: type === 'danger' ? 'hsl(var(--pro-error))' : 'hsl(var(--pro-warning))',
           },
         },
       ),

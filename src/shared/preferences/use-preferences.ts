@@ -3,7 +3,14 @@ import { computed } from 'vue'
 import { diff } from '@/shared/utils'
 
 import { preferencesManager } from './preferences'
-import { isDarkTheme } from './update-css-variables'
+
+function isDarkTheme(theme: string) {
+  let dark = theme === 'dark'
+  if (theme === 'auto') {
+    dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  return dark
+}
 
 function usePreferences() {
   const preferences = preferencesManager.getPreferences()

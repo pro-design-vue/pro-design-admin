@@ -212,7 +212,7 @@ interface ThemePreferences {
   /** 内置主题名 */
   builtinType: BuiltinThemeType
   /** 错误色 */
-  colorDestructive: string
+  colorError: string
   /** 主题色 */
   colorPrimary: string
   /** 成功色 */
@@ -222,7 +222,7 @@ interface ThemePreferences {
   /** 当前主题 */
   mode: ThemeModeType
   /** 圆角 */
-  radius: string
+  borderRadius: number
   /** 是否开启半深色header（只在theme='light'时生效） */
   semiDarkHeader: boolean
   /** 是否开启半深色菜单（只在theme='light'时生效） */

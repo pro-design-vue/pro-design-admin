@@ -10,7 +10,6 @@ import { isMacOs, merge } from '@/shared/utils'
 import { breakpointsTailwind, useBreakpoints, useDebounceFn } from '@vueuse/core'
 
 import { defaultPreferences } from './config'
-import { updateCSSVariables } from './update-css-variables'
 
 const STORAGE_KEY = 'preferences'
 const STORAGE_KEY_LOCALE = `${STORAGE_KEY}-locale`
@@ -137,11 +136,7 @@ class PreferenceManager {
    * @param {DeepPartial<Preferences>} updates - 部分更新的偏好设置
    */
   private handleUpdates(updates: DeepPartial<Preferences>) {
-    const themeUpdates = updates.theme || {}
     const appUpdates = updates.app || {}
-    if (themeUpdates && Object.keys(themeUpdates).length > 0) {
-      updateCSSVariables(this.state)
-    }
 
     if (Reflect.has(appUpdates, 'colorGrayMode') || Reflect.has(appUpdates, 'colorWeakMode')) {
       this.updateColorMode(this.state)

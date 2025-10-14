@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 16:33:00
  * @LastEditors: shen
- * @LastEditTime: 2025-09-02 15:53:23
+ * @LastEditTime: 2025-10-14 09:05:24
  * @Description:
 -->
 <script setup lang="ts">
@@ -414,21 +414,16 @@ const onTest = () => {
       <Filter ref="filterRef" :items="filterItems" @reset="handleReset" @finish="handleFinish" />
     </Card>
     <Card>
-      <!-- <ProForm.Steps
-        :steps="[
-          { title: '创建实验', description: '这里填入的都是基本信息' },
-          { title: '设置参数', description: '这里填入运维参数' },
-          { title: '第三步', description: '这里填入运维参数' },
-        ]"
-        :items="formItems2"
-        @finish="handleFinish"
-      /> -->
-      <ProForm.Drawer title="策四" :items="formItems" @finish="handleFinish">
-        <template #trigger>
-          <ProButton>打开</ProButton>
+      <ProForm grid :col-props="{ span: 8 }" :items="formItems" @finish="handleFinish">
+        <template #submitter="{ defaultDoms }">
+          <component :is="defaultDoms" />
+          <ProForm.Drawer title="抽屉表单" :items="formItems" @finish="handleFinish">
+            <template #trigger>
+              <ProButton>打开抽屉表单</ProButton>
+            </template>
+          </ProForm.Drawer>
         </template>
-      </ProForm.Drawer>
-      <ProForm grid :col-props="{ span: 8 }" :items="formItems" @finish="handleFinish"> </ProForm>
+      </ProForm>
     </Card>
   </ProPage>
 </template>

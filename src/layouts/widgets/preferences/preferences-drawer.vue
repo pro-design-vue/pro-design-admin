@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-23 16:00:02
  * @LastEditors: shen
- * @LastEditTime: 2025-09-02 15:51:42
+ * @LastEditTime: 2025-10-13 10:10:36
  * @Description:
 -->
 <script setup lang="ts">
@@ -82,7 +82,7 @@ const transitionEnable = defineModel<boolean>('transitionEnable')
 const themeColorPrimary = defineModel<string>('themeColorPrimary')
 const themeBuiltinType = defineModel<BuiltinThemeType>('themeBuiltinType')
 const themeMode = defineModel<ThemeModeType>('themeMode')
-const themeRadius = defineModel<string>('themeRadius')
+const themeBorderRadius = defineModel<number>('themeBorderRadius')
 const themeSemiDarkSidebar = defineModel<boolean>('themeSemiDarkSidebar')
 const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader')
 
@@ -227,12 +227,12 @@ async function handleClearCache() {
             :tooltip-props="{
               arrow: false,
             }"
-            style="font-size: 13px"
+            style="font-size: 15px"
             class="preferences-reset"
             @click="handleReset"
           >
             <template #icon>
-              <RotateCwIcon style="margin-top: 4px" />
+              <RotateCwIcon />
             </template>
           </ProButton>
         </Badge>
@@ -255,7 +255,7 @@ async function handleClearCache() {
             />
           </Block>
           <Block :title="$t('preferences.theme.radius')">
-            <Radius v-model:themeRadius="themeRadius" />
+            <Radius v-model:themeBorderRadius="themeBorderRadius" />
           </Block>
           <Block :title="$t('preferences.other')">
             <ColorMode

@@ -6,6 +6,7 @@ import { ArrowDownIcon, ArrowUpIcon, CornerDownLeftIcon, MdiKeyboardEsc, SearchI
 import { $t } from '@/shared/locales'
 import { isWindowsOs } from '@/shared/utils'
 import { ProModal } from 'pro-design-vue'
+import { Modal } from 'ant-design-vue'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import SearchPanel from './search-panel.vue'
 
@@ -78,6 +79,7 @@ onMounted(() => {
     <ProModal
       v-model:open="open"
       :width="600"
+      :destroy-on-close="false"
       class="global-search-modal"
       draggable
       @cancel="handleClose"

@@ -145,7 +145,6 @@ function removeItem(index: number) {
     searchHistory.value.splice(index, 1)
   }
   searchResults.value.splice(index, 1)
-
   activeIndex.value = Math.max(activeIndex.value - 1, 0)
   scrollIntoView()
 }
@@ -250,7 +249,7 @@ onMounted(() => {
 <style lang="less" scoped>
 .global-search-panel {
   position: relative;
-  min-height: 160px;
+  min-height: 120px;
   overflow: hidden;
 
   &-scroll {

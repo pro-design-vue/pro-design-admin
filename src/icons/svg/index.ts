@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-13 10:05:12
  * @LastEditors: shen
- * @LastEditTime: 2025-07-02 16:15:47
+ * @LastEditTime: 2025-10-14 11:15:38
  * @Description:
  */
 import { createIconifyIcon } from '../create-icon.js'
@@ -63,6 +63,7 @@ const PanelRightIcon = createIconifyIcon('svg:panel-right')
 const PaletteIcon = createIconifyIcon('svg:palette')
 const SquarePenIcon = createIconifyIcon('svg:square-pen')
 const UserPenIcon = createIconifyIcon('svg:user-pen')
+const BookOpenTextIcon = createIconifyIcon('svg:book-open-text')
 
 export {
   ArrowDownIcon,
@@ -120,4 +121,5 @@ export {
   PaletteIcon,
   SquarePenIcon,
   UserPenIcon,
+  BookOpenTextIcon,
 }
