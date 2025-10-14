@@ -102,7 +102,7 @@ const descriptionItems = [
     <Card title="">
       <template v-for="item in descriptionItems" :key="item.title">
         <CardGrid style="width: 25%; text-align: left" :hoverable="false">
-          <div style="font-weight: 500; margin-bottom: 10px">{{ item.title }}</div>
+          <div style=" margin-bottom: 10px;font-weight: 500">{{ item.title }}</div>
           <div v-if="item.content">{{ item.content }}</div>
           <div v-if="item.link">
             <a
