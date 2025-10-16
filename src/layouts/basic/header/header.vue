@@ -159,6 +159,7 @@ function clearPreferencesAndLogout() {
 
         <template v-else-if="slot.name === 'preferences'">
           <PreferencesButton
+            :copyrightSettingShow="preferences.copyright.settingShow"
             class="layout-header-actions-item"
             @clear-preferences-and-logout="clearPreferencesAndLogout"
           />

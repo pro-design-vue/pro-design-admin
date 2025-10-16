@@ -2,11 +2,10 @@
  * @Author: shen
  * @Date: 2025-05-14 13:36:49
  * @LastEditors: shen
- * @LastEditTime: 2025-10-13 10:12:05
+ * @LastEditTime: 2025-10-16 11:20:07
  * @Description:
 -->
 <script lang="ts" setup>
-import { computed } from 'vue'
 import { ProConfigProvider } from 'pro-design-vue'
 import { preferences, usePreferences } from '@/shared/preferences'
 import { antdLocale } from './locales'
@@ -19,8 +18,6 @@ defineOptions({ name: 'App' })
 defineProps<Props>()
 
 const { isDark } = usePreferences()
-
-const token = computed(() => preferences.theme)
 </script>
 
 <template>
@@ -28,7 +25,7 @@ const token = computed(() => preferences.theme)
     :dark="isDark"
     :compact="preferences.app.compact"
     :locale="antdLocale"
-    :token="token"
+    :token="preferences.theme"
     :content-offset-top="contentOffsetTop"
     :prefix-cls="config.antdPrefixCls"
   >

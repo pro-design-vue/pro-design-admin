@@ -100,6 +100,8 @@ declare interface RouteMeta {
   title?: string
   newTabTitle?: string
   componentPath?: string
+  parent?: RouteRecordRaw
+  parents?: RouteRecordRaw[]
 }
 
 // 定义递归类型以将 RouteRecordRaw 的 component 属性更改为 string

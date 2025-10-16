@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 13:31:29
  * @LastEditors: shen
- * @LastEditTime: 2025-08-23 17:32:26
+ * @LastEditTime: 2025-10-16 20:10:09
  * @Description:
  */
 import type { ComponentRecordType, MenuData } from '@/typings'
@@ -11,7 +11,7 @@ import type { Component, DefineComponent } from 'vue'
 import { defineComponent, h } from 'vue'
 import { BasicLayout } from '@/layouts'
 import { normalizeViewPath } from './utils'
-import { forTree, pick } from '@/shared/utils'
+import { forTree, omit, pick } from '@/shared/utils'
 import {
   isFunction,
   isString,
@@ -64,7 +64,8 @@ function convertRoutes(
   layoutMap: ComponentRecordType,
   pageMap: ComponentRecordType,
 ): RouteRecordRaw[] {
-  return mapTree(menusTree, (node) => {
+  const routes: RouteRecordRaw[] = []
+  mapTree(menusTree, (node) => {
     const route = node as unknown as any
     const localeRoute = localeRouteMap[route.path]
     const { component, name, microUrl, iframeSrc } = node
@@ -85,11 +86,15 @@ function convertRoutes(
           logger.error(`route component is invalid: ${pageKey}`, route)
           route.component = pageMap['/fallback/not-found.vue']
         }
-      } else if (!(route.children?.length || isHttpUrl(route.path))) {
-        if (localeRoute?.component) {
-          route.component = localeRoute?.component
-        } else {
-          route.component = pageMap['/fallback/not-found.vue']
+      } else {
+        const childrenLength = route.children?.filter((item) => !item?.hideInMenu).length
+        if (!childrenLength && !isHttpUrl(route.path)) {
+          if (localeRoute?.component) {
+            route.component = localeRoute?.component
+          } else {
+            logger.error(`the routing configuration does not exist`, route)
+            // route.component = pageMap['/fallback/not-found.vue']
+          }
         }
       }
     } else {
@@ -117,15 +122,34 @@ function convertRoutes(
       }
     }
 
-    //根据menu数据重新包装route meta数据
+    const resultChildren = node.hideChildrenInMenu ? [] : (node.children ?? [])
     const metaData = pick(route, ROUTE_META_KEYS)
-    route.meta = omitUndefined({
+    const meta = omitUndefined({
       ...(localeRoute?.meta ?? {}),
       ...(route.meta ?? {}),
       ...metaData,
     })
+    if (resultChildren.length > 0) {
+      resultChildren.forEach((child) => {
+        const copyNode = {
+          name: node.name,
+          path: node.path,
+          meta,
+        }
+        child.parents = [...(node.parents ?? []), copyNode]
+        child.parent = copyNode
+      })
+    }
+
+    //根据menu数据重新包装route meta数据
+    route.meta = omitUndefined({
+      ...meta,
+      parent: node.parent,
+      parents: node.parents,
+    })
     route.redirect = route.redirect || localeRoute?.redirect
-    return pick(route, [
+
+    const newRoute = pick(route, [
       'component',
       'children',
       'redirect',
@@ -135,7 +159,12 @@ function convertRoutes(
       'name',
       'meta',
     ]) as unknown as RouteRecordRaw
+    if (newRoute.component) {
+      routes.push(omit(newRoute, ['children']) as RouteRecordRaw)
+    }
+    return newRoute
   })
+  return routes
 }
 
 function generateLocaleRouteMap(routes: RouteRecordRaw[]) {
@@ -199,10 +228,11 @@ const generateRoutes = async (options: GenerateMenuAndRoutesOptions) => {
     }
 
     // 如果有redirect或者没有子路由，则直接返回
-    if (route.redirect || !route.children || route.children.length === 0) {
+    const children = route.children?.filter((item) => !item.meta?.hideInMenu)
+    if (route.redirect || !children || children.length === 0) {
       return route
     }
-    const firstChild = route.children[0]
+    const firstChild = route.children?.[0]
 
     // 如果子路由不是以/开头，则直接返回,这种情况需要计算全部父级的path才能得出正确的path，这里不做处理
     if (!firstChild?.path || !firstChild.path.startsWith('/')) {

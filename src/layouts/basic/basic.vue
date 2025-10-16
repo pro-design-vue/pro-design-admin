@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 15:02:08
  * @LastEditors: shen
- * @LastEditTime: 2025-10-14 11:18:27
+ * @LastEditTime: 2025-10-16 10:49:05
  * @Description:
 -->
 <script setup lang="ts">
@@ -435,6 +435,7 @@ const handleMakeAll = () => {
 
       <template v-if="preferencesButtonPosition.fixed">
         <Preferences
+          :copyrightSettingShow="preferences.copyright.settingShow"
           style="position: fixed; right: 0; bottom: 80px; z-index: 100"
           @clear-preferences-and-logout="handleLogout"
         />

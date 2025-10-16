@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-20 10:05:17
  * @LastEditors: shen
- * @LastEditTime: 2025-06-30 15:14:50
+ * @LastEditTime: 2025-10-16 20:10:50
  * @Description:
 -->
 <script lang="ts" setup>
@@ -10,6 +10,7 @@ import { computed, type Component } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ChevronRightIcon } from '@/icons'
 import { Breadcrumb } from 'ant-design-vue'
+import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import { ProIcon } from '@/components/common'
 import { $t } from '@/shared/locales'
 
@@ -34,8 +35,7 @@ const route = useRoute()
 const router = useRouter()
 
 const breadcrumbs = computed((): IBreadcrumb[] => {
-  const matched = route.matched
-
+  const matched = [...(route.meta.parents ?? []), route.matched[route.matched.length - 1]]
   const resultBreadcrumb: IBreadcrumb[] = []
 
   for (const match of matched) {
@@ -62,16 +62,27 @@ const handleSelect = (path: string, isLast: boolean = false) => {
     router.push(path)
   }
 }
+
+const handleGoBack = () => {
+  router.go(-1)
+}
 </script>
 <template>
   <div class="breadcrumb">
-    <Breadcrumb v-if="showHome" style="margin-right: 15px">
-      <Breadcrumb.Item href="/" @click="handleSelect('/')">
+    <Breadcrumb style="margin-right: 15px">
+      <Breadcrumb.Item href="back" @click="handleGoBack">
         <div class="breadcrumb-item">
-          <ProIcon icon="lucide:house" style="font-size: 16px" />
+          <ArrowLeftOutlined style="font-size: 16px; color: hsl(var(--pro-foreground))" />
         </div>
       </Breadcrumb.Item>
     </Breadcrumb>
+    <!-- <Breadcrumb v-if="showHome" style="margin-right: 15px">
+      <Breadcrumb.Item href="/" @click="handleSelect('/')">
+        <div class="breadcrumb-item">
+          <ProIcon icon="home" style="font-size: 16px" />
+        </div>
+      </Breadcrumb.Item>
+    </Breadcrumb> -->
     <Breadcrumb>
       <template #separator>
         <ChevronRightIcon />
