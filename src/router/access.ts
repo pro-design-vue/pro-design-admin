@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 13:31:29
  * @LastEditors: shen
- * @LastEditTime: 2025-10-17 16:26:36
+ * @LastEditTime: 2025-10-17 18:15:21
  * @Description:
  */
 import type { ComponentRecordType, MenuData } from '@/typings'
@@ -11,7 +11,7 @@ import type { Component, DefineComponent } from 'vue'
 import { defineComponent, h } from 'vue'
 import { BasicLayout } from '@/layouts'
 import { normalizeViewPath } from './utils'
-import { forTree, omit, pick } from '@/shared/utils'
+import { forTree, pick } from '@/shared/utils'
 import {
   isFunction,
   isString,

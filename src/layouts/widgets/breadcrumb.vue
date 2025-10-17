@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-20 10:05:17
  * @LastEditors: shen
- * @LastEditTime: 2025-10-17 18:09:58
+ * @LastEditTime: 2025-10-17 18:15:06
  * @Description:
 -->
 <script lang="ts" setup>
@@ -10,7 +10,6 @@ import { computed, type Component } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ChevronRightIcon } from '@/icons'
 import { Breadcrumb } from 'ant-design-vue'
-import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import { ProIcon } from '@/components/common'
 import { $t } from '@/shared/locales'
 
