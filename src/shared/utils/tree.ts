@@ -1,3 +1,5 @@
+import { omit } from './omit'
+
 interface TreeConfigOptions {
   // 子属性的名称，默认为'children'
   childProps: string
@@ -135,4 +137,28 @@ function forTree<T>(tree: T[], handler: (node: T) => void, options?: TreeConfigO
   })
 }
 
-export { filterTree, mapTree, toTree, forTree, traverseTreeValues }
+/**
+ * 树结构扁平化
+ * @param tree 树结构。
+ * @param handler 用于map每个节点的条件。
+ */
+function treeToArray<
+  T extends {
+    children: T[]
+  },
+  V extends Record<string, any>,
+>(tree: T[], mapper?: (node: T) => V) {
+  const flatData: V[] = []
+  const queue = [...tree]
+  while (queue.length > 0) {
+    const node = queue.shift()!
+    const mapperNode: Record<string, any> = mapper ? mapper(node) : node
+    flatData.push(omit(mapperNode, ['children']) as V)
+    if (node.children?.length) {
+      queue.push(...node.children)
+    }
+  }
+  return flatData
+}
+
+export { filterTree, mapTree, toTree, forTree, treeToArray, traverseTreeValues }

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-28 10:25:44
  * @LastEditors: shen
- * @LastEditTime: 2025-08-26 08:56:15
+ * @LastEditTime: 2025-10-17 13:58:46
  * @Description:
  */
 import type { MenuData } from '@/typings'
@@ -72,19 +72,44 @@ export const genMenuData = (lang: 'zh-CN' | 'en-US' = 'zh-CN'): MenuData[] => {
       title: lang === 'zh-CN' ? '表格' : 'Table Demo',
       keepAlive: true,
     },
+    {
+      id: '2-3',
+      parentId: '2',
+      order: 3,
+      name: 'CreateForm',
+      path: '/demos/form/create',
+      activePath: '/demos',
+      // component: '/demos/form/index',
+      title: lang === 'zh-CN' ? '新建' : 'Create Demo',
+      keepAlive: true,
+      hideInMenu: true,
+    },
+    {
+      id: '2-2-1',
+      parentId: '2-2',
+      order: 1,
+      name: 'CreateForm01',
+      path: '/demos/form/create1',
+      activePath: '/demos/form',
+      // component: '/demos/form/index',
+      title: lang === 'zh-CN' ? '新建' : 'Create Demo',
+      keepAlive: true,
+      hideInMenu: true,
+    },
     // vue3 demo
     {
       id: '3',
       order: 3,
       parentId: '0',
       name: 'Vue3Demos',
-      appName: 'vue3',
-      path: '/',
+      // appName: 'vue3',
+      path: '/Vue3Demos',
       // microUrl: 'http://localhost:8095/',
-      microUrl: 'http://localhost:9601/',
-      redirect: '/demos/form',
+      // microUrl: 'http://localhost:9601/',
+      // redirect: '/vue3/demos/form',
       title: lang === 'zh-CN' ? 'Vue3 示例' : 'Vue3 Demos',
     },
+
     {
       id: '3-2',
       parentId: '3',
@@ -109,6 +134,16 @@ export const genMenuData = (lang: 'zh-CN' | 'en-US' = 'zh-CN'): MenuData[] => {
       // microUrl: 'http://localhost:8095/',
       microUrl: 'http://localhost:9601/',
       title: lang === 'zh-CN' ? 'Vue3 表格' : 'Vue3 Table Demo',
+      keepAlive: true,
+    },
+    {
+      id: '3-4',
+      parentId: '3',
+      order: 4,
+      name: 'Table01',
+      path: '/demos/table01',
+      // component: '/demos/table/index',
+      title: lang === 'zh-CN' ? '表格' : 'Table Demo',
       keepAlive: true,
     },
     //vue2 demo
@@ -217,7 +252,7 @@ export const genMenuData = (lang: 'zh-CN' | 'en-US' = 'zh-CN'): MenuData[] => {
       parentId: '0',
       name: 'IframeDemos',
       path: '/iframe',
-      redirect: '/iframe/fanyi',
+      redirect: '/iframe/elemnt-plus/doc',
       title: lang === 'zh-CN' ? 'Iframe 示例' : 'Iframe Demos',
     },
     {

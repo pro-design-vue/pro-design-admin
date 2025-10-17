@@ -2,14 +2,14 @@
  * @Author: shen
  * @Date: 2025-05-28 14:28:18
  * @LastEditors: shen
- * @LastEditTime: 2025-08-17 08:24:22
+ * @LastEditTime: 2025-10-17 13:16:30
  * @Description:
  */
 import type { MenuData, MenuRecordRaw, UserData } from '@/typings'
 import type { ComputedRef, Ref } from 'vue'
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { LOGIN_PATH, VITE_APP_STORAGE_ENCRYPE } from '@/shared/constants'
+import { LOGIN_PATH, VITE_APP_NAME, VITE_APP_STORAGE_ENCRYPE } from '@/shared/constants'
 import { authLoginApi, getAuthMenuList, getAuthUserInfo } from '@/api'
 import { localCache } from '@/shared/cache'
 import { mapTree, toTree } from '@/shared/utils'
@@ -136,21 +136,22 @@ export const useAuthStore = defineStore<string, AuthState>(
       return mapTree(treeMenus, (item) => {
         // 确保菜单名称不为空
         const title = (item.title || item.name || '') as string
+        const path =
+          item.microUrl && VITE_APP_NAME !== item.appName
+            ? `/${item.appName}${item.path}`
+            : item.path
         const resultChildren = item.hideChildrenInMenu
           ? []
           : ((item.children as MenuRecordRaw[]) ?? [])
 
         if (resultChildren.length > 0) {
           resultChildren.forEach((child) => {
-            child.parents = [...(item.parents ?? []), item.path]
-            child.parent = item.path
+            child.parents = [...(item.parents ?? []), path]
+            child.parent = path
           })
         }
-
         // 确定最终路径
-        const resultPath = item.hideChildrenInMenu
-          ? item.redirect || item.path
-          : item.link || item.path
+        const resultPath = item.hideChildrenInMenu ? item.redirect || path : item.link || path
 
         return {
           key: resultPath,

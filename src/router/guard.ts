@@ -2,12 +2,12 @@
  * @Author: shen
  * @Date: 2025-05-27 10:09:12
  * @LastEditors: shen
- * @LastEditTime: 2025-08-14 15:24:12
+ * @LastEditTime: 2025-10-17 14:27:14
  * @Description:
  */
 import type { Router } from 'vue-router'
 
-import { startProgress, stopProgress } from '@/shared/utils'
+import { cloneDeep, startProgress, stopProgress } from '@/shared/utils'
 import { accessRoutes, coreRouteNames } from './routes'
 import { LOGIN_PATH } from '@/shared/constants'
 import { generateAccess } from './access'
@@ -52,7 +52,6 @@ const setupAccessGuard = (router: Router) => {
     if (config.powerByMicro) {
       return true
     }
-    // const appStore = useAppStore()
     const authStore = useAuthStore()
     // 基本路由，这些路由不需要进入权限拦截
     if (coreRouteNames.includes(to.name as string)) {
@@ -108,18 +107,16 @@ const setupAccessGuard = (router: Router) => {
     }
 
     // originMenus 不能是树形结构
-    const originMenus = authStore.originMenus?.length
-      ? authStore.originMenus
-      : await authStore.fetchAccessMenus()
-
+    const originMenus = await authStore.fetchAccessMenus()
+    // 如果接口返回树结构，在这扁平化处理一下
+    // treeToArray(originMenus)
+    authStore.setAccessMenus(originMenus)
     // 生成有权限路由
     await generateAccess({
       router,
-      menus: originMenus,
-      // 则会在菜单中显示，但是访问会被重定向到403
+      menus: cloneDeep(originMenus),
       routes: accessRoutes,
     })
-    authStore.setAccessMenus(originMenus)
     authStore.setIsAccessChecked(true)
 
     const redirectPath = (from.query.redirect ??

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 16:33:00
  * @LastEditors: shen
- * @LastEditTime: 2025-10-14 09:05:24
+ * @LastEditTime: 2025-10-17 11:11:10
  * @Description:
 -->
 <script setup lang="ts">
@@ -21,8 +21,12 @@ import { getPublicConfig } from '@/api'
 import { sleep } from '@/shared/utils'
 import { Card, Image } from 'ant-design-vue'
 import { useApplication } from '@/hooks'
+import { useRouter } from 'vue-router'
 
 const mounted = false
+
+const router = useRouter()
+
 onMounted(async () => {
   console.log('onMounted')
   // mounted = true
@@ -405,6 +409,13 @@ const handleFinish = async (val) => {
 const onTest = () => {
   filterRef.value?.reset()
 }
+
+const handleCreate = () => {
+  router.push('/demos/form/create')
+}
+const handleCreate1 = () => {
+  router.push('/demos/form/create1')
+}
 </script>
 
 <template>
@@ -422,6 +433,8 @@ const onTest = () => {
               <ProButton>打开抽屉表单</ProButton>
             </template>
           </ProForm.Drawer>
+          <ProButton @click="handleCreate">新建</ProButton>
+          <ProButton @click="handleCreate1">新建1</ProButton>
         </template>
       </ProForm>
     </Card>

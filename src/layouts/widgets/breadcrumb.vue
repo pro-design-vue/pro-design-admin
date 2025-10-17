@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-20 10:05:17
  * @LastEditors: shen
- * @LastEditTime: 2025-10-16 20:10:50
+ * @LastEditTime: 2025-10-17 18:09:58
  * @Description:
 -->
 <script lang="ts" setup>
@@ -62,27 +62,16 @@ const handleSelect = (path: string, isLast: boolean = false) => {
     router.push(path)
   }
 }
-
-const handleGoBack = () => {
-  router.go(-1)
-}
 </script>
 <template>
   <div class="breadcrumb">
-    <Breadcrumb style="margin-right: 15px">
-      <Breadcrumb.Item href="back" @click="handleGoBack">
+    <Breadcrumb v-if="showHome" style="margin-right: 15px">
+      <Breadcrumb.Item href="/" @click="handleSelect('/')">
         <div class="breadcrumb-item">
-          <ArrowLeftOutlined style="font-size: 16px; color: hsl(var(--pro-foreground))" />
+          <ProIcon icon="lucide:house" style="font-size: 16px" />
         </div>
       </Breadcrumb.Item>
     </Breadcrumb>
-    <!-- <Breadcrumb v-if="showHome" style="margin-right: 15px">
-      <Breadcrumb.Item href="/" @click="handleSelect('/')">
-        <div class="breadcrumb-item">
-          <ProIcon icon="home" style="font-size: 16px" />
-        </div>
-      </Breadcrumb.Item>
-    </Breadcrumb> -->
     <Breadcrumb>
       <template #separator>
         <ChevronRightIcon />
