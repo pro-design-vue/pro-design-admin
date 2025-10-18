@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-20 10:05:17
  * @LastEditors: shen
- * @LastEditTime: 2025-10-17 18:15:06
+ * @LastEditTime: 2025-10-18 11:37:00
  * @Description:
 -->
 <script lang="ts" setup>
@@ -83,8 +83,9 @@ const handleSelect = (path: string, isLast: boolean = false) => {
       >
         <div class="breadcrumb-item">
           <ProIcon
-            v-if="showIcon && item.icon"
+            v-if="showIcon"
             :icon="item.icon"
+            fallback
             style="margin-right: 5px; font-size: 16px"
           />
           <span> {{ item.title }}</span>

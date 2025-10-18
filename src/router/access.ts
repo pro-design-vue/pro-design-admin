@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 13:31:29
  * @LastEditors: shen
- * @LastEditTime: 2025-10-17 18:15:21
+ * @LastEditTime: 2025-10-18 10:54:56
  * @Description:
  */
 import type { ComponentRecordType, MenuData } from '@/typings'
@@ -101,8 +101,8 @@ function convertRoutes(
           if (localeRoute?.component) {
             route.component = localeRoute?.component
           } else {
-            logger.error(`the routing configuration does not exist`, route)
-            // route.component = pageMap['/fallback/not-found.vue']
+            logger.error(`route component is invalid: ${route.name}`, route)
+            route.component = pageMap['/fallback/not-found.vue']
           }
         }
       }
