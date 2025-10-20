@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 13:31:29
  * @LastEditors: shen
- * @LastEditTime: 2025-10-18 10:54:56
+ * @LastEditTime: 2025-10-20 17:26:24
  * @Description:
  */
 import type { ComponentRecordType, MenuData } from '@/typings'
@@ -11,7 +11,7 @@ import type { Component, DefineComponent } from 'vue'
 import { defineComponent, h } from 'vue'
 import { BasicLayout } from '@/layouts'
 import { normalizeViewPath } from './utils'
-import { forTree, pick } from '@/shared/utils'
+import { forTree, pick, filterTree } from '@/shared/utils'
 import {
   isFunction,
   isString,
@@ -109,9 +109,6 @@ function convertRoutes(
     } else {
       if (route.microUrl) {
         route.path = `/${route.appName}${route.path}`
-        route.meta = {
-          componentPath: route.component,
-        }
       }
       if (!validChildren?.length) {
         route.component = async () => {
@@ -137,8 +134,9 @@ function convertRoutes(
       ...(route.meta ?? {}),
       ...metaData,
     })
-    if (resultChildren.length > 0) {
-      resultChildren.forEach((child) => {
+
+    if (children?.length) {
+      children.forEach((child) => {
         const copyNode = {
           name: node.name,
           path: node.path,
@@ -147,7 +145,9 @@ function convertRoutes(
         child.parents = [...(node.parents ?? []), copyNode]
         child.parent = copyNode
       })
+    }
 
+    if (resultChildren.length > 0) {
       let redirectChild = resultChildren[0]
       if (route.redirect) {
         const child = resultChildren.find((child) => child.path === route.redirect)
@@ -228,11 +228,20 @@ const generateAccessible = async (options: GenerateMenuAndRoutesOptions) => {
 
   const accessibleRoutes = await generateRoutes(options)
   const root = router.getRoutes().find((item) => item.path === '/')
-
+  const hideInMenuRoutes: RouteRecordRaw[] = []
+  const filterRoutes = filterTree(accessibleRoutes, (item) => {
+    if (item.meta?.hideInMenu) {
+      hideInMenuRoutes.push(item)
+      return false
+    }
+    return true
+  })
+  // console.log(newRoutes)
   // 获取已有的路由名称列表
   const names = root?.children?.map((item) => item.name) ?? []
   // 动态添加到router实例内
-  accessibleRoutes.forEach((route) => {
+  const routes = [...filterRoutes, ...hideInMenuRoutes]
+  routes.forEach((route) => {
     if (root && !route.meta?.noBasicLayout) {
       // 根据router name判断，如果路由已经存在，则不再添加
       if (names?.includes(route.name)) {

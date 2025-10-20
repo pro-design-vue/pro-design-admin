@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 16:33:00
  * @LastEditors: shen
- * @LastEditTime: 2025-10-14 09:01:50
+ * @LastEditTime: 2025-10-20 16:31:14
  * @Description:
 -->
 <script setup lang="ts">
@@ -28,7 +28,7 @@ const columns: ProTableColumnsType = [
     title: '你的标题太长了会被缩进',
     dataIndex: 'name',
     fixed: 'left',
-    width: 150,
+    width: 200,
     rowDrag: ({ record }) => {
       return record.id !== 1
     },
@@ -91,6 +91,7 @@ for (let i = 0; i < 1000; i++) {
     name: `Edrward ${i}`,
     age: i + 1,
     address: `London Park no. ${i}`,
+    children: [{ id: i + '123123123', name: `Edrward ${i} -1` }],
   })
 }
 const pagination = ref({

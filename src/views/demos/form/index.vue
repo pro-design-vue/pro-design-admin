@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 16:33:00
  * @LastEditors: shen
- * @LastEditTime: 2025-10-17 11:11:10
+ * @LastEditTime: 2025-10-20 16:28:18
  * @Description:
 -->
 <script setup lang="ts">
@@ -405,22 +405,10 @@ const handleFinish = async (val) => {
   console.log('🚀 ~ handleReset ~ val:', val)
   return true
 }
-
-const onTest = () => {
-  filterRef.value?.reset()
-}
-
-const handleCreate = () => {
-  router.push('/demos/form/create')
-}
-const handleCreate1 = () => {
-  router.push('/demos/form/create1')
-}
 </script>
 
 <template>
   <ProPage>
-    <template #title> 自带路由示例页面 </template>
     <Card style="margin-bottom: 10px">
       <Filter ref="filterRef" :items="filterItems" @reset="handleReset" @finish="handleFinish" />
     </Card>
@@ -433,8 +421,6 @@ const handleCreate1 = () => {
               <ProButton>打开抽屉表单</ProButton>
             </template>
           </ProForm.Drawer>
-          <ProButton @click="handleCreate">新建</ProButton>
-          <ProButton @click="handleCreate1">新建1</ProButton>
         </template>
       </ProForm>
     </Card>

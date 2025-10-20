@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 15:02:08
  * @LastEditors: shen
- * @LastEditTime: 2025-10-16 10:49:05
+ * @LastEditTime: 2025-10-19 17:56:57
  * @Description:
 -->
 <script setup lang="ts">
@@ -29,8 +29,10 @@ import { LayoutHeader } from './header'
 import { LayoutTabbar } from './tabbar'
 import { LayoutFooter } from './footer'
 import { BackTop } from './back-top'
+import { LoginExpiredModal } from './expired-modal'
 import { DOC_URL, ADMIN_GITHUB_URL, COMPONENT_GITHUB_URL } from '@/shared/constants'
 import { preferences, updatePreferences, usePreferences } from '@/shared/preferences'
+import LoginForm from '@/views/authentication/login/index.vue'
 import DefaultLogo from '@/assets/logo_small.png'
 import DefaultAvatar from '@/assets/avatar-v1.webp'
 defineOptions({ name: 'BasicLayout' })
@@ -424,6 +426,16 @@ const handleMakeAll = () => {
     </template>
 
     <template #extra>
+      <LoginExpiredModal v-model:open="authStore.loginExpired" :avatar>
+        <LoginForm
+          :show-forget-password="false"
+          :show-register="false"
+          :show-remember-me="false"
+          center
+          :sub-title="$t('authentication.loginAgainSubTitle')"
+          :title="$t('authentication.loginAgainTitle')"
+        />
+      </LoginExpiredModal>
       <Transition v-if="preferences.widget.lockScreen" name="slide-up">
         <LockScreen
           v-if="authStore.isLockScreen"

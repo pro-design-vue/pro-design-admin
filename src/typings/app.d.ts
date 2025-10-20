@@ -57,13 +57,6 @@ type LoginExpiredModeType = 'modal' | 'page'
 type BreadcrumbStyleType = 'background' | 'normal'
 
 /**
- * 权限模式
- * backend 后端权限模式
- * frontend 前端权限模式
- */
-type AccessModeType = 'backend' | 'frontend'
-
-/**
  * 导航风格
  * plain 朴素
  * rounded 圆润
@@ -93,7 +86,6 @@ type PageTransitionType = 'fade' | 'fade-down' | 'fade-slide' | 'fade-up'
 type AuthPageLayoutType = 'panel-center' | 'panel-left' | 'panel-right'
 
 export type {
-  AccessModeType,
   AuthPageLayoutType,
   BreadcrumbStyleType,
   BuiltinThemeType,

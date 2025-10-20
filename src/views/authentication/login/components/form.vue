@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-27 14:19:47
  * @LastEditors: shen
- * @LastEditTime: 2025-06-30 16:19:56
+ * @LastEditTime: 2025-10-19 17:26:45
  * @Description:
 -->
 <script setup lang="ts">
@@ -27,6 +27,8 @@ interface Props {
    * @zh_CN 是否处于加载处理状态
    */
   loading?: boolean
+  showForgetPassword?: boolean
+  showRememberMe?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
@@ -87,15 +89,18 @@ const handleFinish = (values: any) => {
           </template>
         </InputPassword>
       </FormItem>
-      <div class="login-form-item">
-        <FormItem name="remember" no-style>
+      <div class="login-form-item" v-if="showRememberMe || showForgetPassword">
+        <FormItem name="remember" no-style v-if="showRememberMe">
           <Checkbox v-model:checked="formState.remember">{{
             $t('authentication.rememberMe')
           }}</Checkbox>
         </FormItem>
-        <span class="pro-link login-form-forgot" @click="handleGo('/auth/forget-password')">{{
-          $t('authentication.forgetPassword')
-        }}</span>
+        <span
+          v-if="showForgetPassword"
+          class="pro-link login-form-forgot"
+          @click="handleGo('/auth/forget-password')"
+          >{{ $t('authentication.forgetPassword') }}</span
+        >
       </div>
       <FormItem style="margin-top: 25px">
         <Button type="primary" :loading="loading" block size="large" html-type="submit">

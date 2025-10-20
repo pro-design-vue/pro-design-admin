@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-10 22:33:31
  * @LastEditors: shen
- * @LastEditTime: 2025-10-14 09:00:53
+ * @LastEditTime: 2025-10-19 18:09:47
  * @Description:
  */
 
@@ -23,6 +23,7 @@ export const overridesPreferences = defineOverridesPreferences({
     name: VITE_APP_TITLE,
     locale: VITE_APP_LANGUAGE,
     layout: 'sidebar-nav',
+    loginExpiredMode: 'modal',
   },
   breadcrumb: {
     showHome: true,

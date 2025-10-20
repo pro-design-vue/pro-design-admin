@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-28 14:28:18
  * @LastEditors: shen
- * @LastEditTime: 2025-10-17 13:16:30
+ * @LastEditTime: 2025-10-19 18:42:55
  * @Description:
  */
 import type { MenuData, MenuRecordRaw, UserData } from '@/typings'
@@ -16,7 +16,7 @@ import { mapTree, toTree } from '@/shared/utils'
 import { useRouter } from 'vue-router'
 import { preferences } from '@/shared/preferences'
 import { notification } from 'ant-design-vue'
-import { resetAllStores } from '../'
+import { resetAllStores, useTabbarStore } from '../'
 import { $t } from '@/locales'
 import config from '@/config'
 
@@ -127,7 +127,7 @@ export const useAuthStore = defineStore<string, AuthState>(
     const loginExpired = ref(false)
     const lockScreenPassword = ref<string | undefined>(undefined)
     const refreshToken = ref<AccessToken>(null)
-
+    const tabbarStore = useTabbarStore()
     const accessMenus = computed(() => {
       const menus = originMenus.value
         .filter((menu) => !menu.hideInMenu)
@@ -244,6 +244,7 @@ export const useAuthStore = defineStore<string, AuthState>(
 
           if (loginExpired.value) {
             setLoginExpired(false)
+            tabbarStore.refresh(router)
           } else {
             onSuccess
               ? await onSuccess?.()

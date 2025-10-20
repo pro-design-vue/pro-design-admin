@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2023-10-26 14:03:01
  * @LastEditors: shen
- * @LastEditTime: 2025-05-30 17:12:21
+ * @LastEditTime: 2025-10-20 14:52:23
  * @Description:
  */
 declare interface AppConfig {
@@ -21,6 +21,5 @@ declare interface AppConfig {
   size?: SizeType
   isMock?: boolean
   isStorageEncrype?: boolean
-  accessMode?: AccessModeType
   microApp?: boolean
 }

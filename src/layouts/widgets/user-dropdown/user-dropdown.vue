@@ -288,6 +288,10 @@ if (enableShortcutKey.value) {
   &-menu {
     ::v-deep(.@{ant-prefix}-menu) {
       color: hsl(var(--pro-popover-foreground));
+      &-item {
+        display: flex;
+        align-items: center;
+      }
     }
 
     &-shortcut {

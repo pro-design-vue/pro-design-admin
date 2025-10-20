@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 09:12:43
  * @LastEditors: shen
- * @LastEditTime: 2025-07-30 11:09:42
+ * @LastEditTime: 2025-10-19 17:57:07
  * @Description:
 -->
 <script setup lang="ts">
@@ -12,6 +12,23 @@ import { LoginForm, LoginThird } from './components'
 import { useAuthStore } from '@/stores'
 import { useRouter } from 'vue-router'
 
+interface Props {
+  showThirdPartyLogin?: boolean
+  showForgetPassword?: boolean
+  showRegister?: boolean
+  showRememberMe?: boolean
+  center?: boolean
+  subTitle?: string
+  title?: string
+}
+
+const {
+  showForgetPassword = true,
+  showThirdPartyLogin = true,
+  showRegister = true,
+  showRememberMe = true,
+  center = false,
+} = defineProps<Props>()
 const router = useRouter()
 const authStore = useAuthStore()
 
@@ -22,13 +39,18 @@ function handleGo(path: string) {
 
 <template>
   <div class="login">
-    <AuthTitle>
-      {{ `${$t('authentication.welcomeBack')} 👋🏻` }}
+    <AuthTitle :style="{ textAlign: center ? 'center' : 'left' }">
+      {{ title || `${$t('authentication.welcomeBack')} 👋🏻` }}
       <template #desc>
-        {{ $t('authentication.loginSubtitle') }}
+        {{ subTitle || $t('authentication.loginSubtitle') }}
       </template>
     </AuthTitle>
-    <LoginForm :loading="authStore.loginLoading" @submit="authStore.authLogin" />
+    <LoginForm
+      :showRememberMe
+      :showForgetPassword
+      :loading="authStore.loginLoading"
+      @submit="authStore.authLogin"
+    />
     <div class="login-other">
       <Button block size="large" @click="handleGo('/auth/code-login')">
         {{ $t('authentication.mobileLogin') }}
@@ -37,8 +59,8 @@ function handleGo(path: string) {
         {{ $t('authentication.qrcodeLogin') }}
       </Button>
     </div>
-    <LoginThird />
-    <div class="login-registry">
+    <LoginThird v-if="showThirdPartyLogin" />
+    <div class="login-registry" v-if="showRegister">
       {{ $t('authentication.accountTip') }}
       <span class="pro-link login-registry-link" @click="handleGo('/auth/register')">
         {{ $t('authentication.createAccount') }}
