@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 09:56:36
  * @LastEditors: shen
- * @LastEditTime: 2025-11-06 10:07:09
+ * @LastEditTime: 2025-11-06 10:26:38
  * @Description:
  */
 export * from './tree'
@@ -40,7 +40,7 @@ export { default as cloneDeep } from 'lodash-es/cloneDeep'
 export { default as merge } from 'lodash-es/merge'
 export { default as debounce } from 'lodash-es/debounce'
 export { default as get } from 'lodash-es/get'
-export { default as isEqual } from 'lodash-es/isequal'
+export { default as isEqual } from 'lodash-es/isEqual'
 export { default as set } from 'lodash-es/set'
 export { default as upperFirst } from 'lodash-es/upperFirst'
 export { default as pick } from 'lodash-es/pick'
