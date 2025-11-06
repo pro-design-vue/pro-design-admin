@@ -42,6 +42,7 @@
     "jsencrypt": "^3.3.2",
     "lodash-es": "^4.17.21",
     "lodash-unified": "^1.0.3",
+    "lucide-vue-next": "^0.552.0",
     "lz-string": "^1.5.0",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^8.2.0",
@@ -57,7 +58,8 @@
     "vue": "^3.5.18",
     "vue-i18n": "^11.1.4",
     "vue-router": "^4.5.0",
-    "watermark-js-plus": "^1.6.2"
+    "watermark-js-plus": "^1.6.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

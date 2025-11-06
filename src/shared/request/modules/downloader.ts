@@ -1,3 +1,10 @@
+/*
+ * @Author: shen
+ * @Date: 2025-08-21 13:28:16
+ * @LastEditors: shen
+ * @LastEditTime: 2025-11-06 09:22:44
+ * @Description:
+ */
 import type { RequestClient } from '../request-client'
 import type { RequestClientConfig } from '../types'
 
@@ -24,7 +31,7 @@ class FileDownloader {
    */
   public async download<T = Blob>(url: string, config?: DownloadRequestConfig): Promise<T> {
     const finalConfig: DownloadRequestConfig = {
-      responseReturn: 'body',
+      responseReturn: 'raw',
       ...config,
       responseType: 'blob',
     }
