@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-25 16:54:04
  * @LastEditors: shen
- * @LastEditTime: 2025-06-25 16:54:14
+ * @LastEditTime: 2025-11-11 17:01:00
  * @Description:
 -->
 <script setup lang="ts">
@@ -28,6 +28,7 @@ const widgetSidebarToggle = defineModel<boolean>('widgetSidebarToggle')
 const widgetLockScreen = defineModel<boolean>('widgetLockScreen')
 const appPreferencesButtonPosition = defineModel<string>('appPreferencesButtonPosition')
 const widgetRefresh = defineModel<boolean>('widgetRefresh')
+const appEnableLanguage = defineModel<boolean>('enableLanguage')
 
 const positionItems = computed((): SelectOption[] => [
   {
@@ -52,7 +53,7 @@ const positionItems = computed((): SelectOption[] => [
   <SwitchItem v-model="widgetThemeToggle">
     {{ $t('preferences.widget.themeToggle') }}
   </SwitchItem>
-  <SwitchItem v-model="widgetLanguageToggle">
+  <SwitchItem v-model="widgetLanguageToggle" v-if="appEnableLanguage">
     {{ $t('preferences.widget.languageToggle') }}
   </SwitchItem>
   <SwitchItem v-model="widgetFullscreen">

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-23 16:00:02
  * @LastEditors: shen
- * @LastEditTime: 2025-10-13 10:10:36
+ * @LastEditTime: 2025-11-11 17:01:04
  * @Description:
 -->
 <script setup lang="ts">
@@ -70,6 +70,7 @@ const appColorWeakMode = defineModel<boolean>('appColorWeakMode')
 const appContentCompact = defineModel<ContentCompactType>('appContentCompact')
 const appWatermark = defineModel<boolean>('appWatermark')
 const appEnableCheckUpdates = defineModel<boolean>('appEnableCheckUpdates')
+const appEnableLanguage = defineModel<boolean>('appEnableLanguage')
 const appPreferencesButtonPosition = defineModel<PreferencesButtonPositionType>(
   'appPreferencesButtonPosition',
 )
@@ -336,6 +337,7 @@ async function handleClearCache() {
               v-model:widget-refresh="widgetRefresh"
               v-model:widget-sidebar-toggle="widgetSidebarToggle"
               v-model:widget-theme-toggle="widgetThemeToggle"
+              v-model:app-enable-language="appEnableLanguage"
             />
           </Block>
           <Block :title="$t('preferences.footer.title')">
@@ -370,6 +372,7 @@ async function handleClearCache() {
               v-model:app-enable-check-updates="appEnableCheckUpdates"
               v-model:app-locale="appLocale"
               v-model:app-watermark="appWatermark"
+              v-model:app-enable-language="appEnableLanguage"
             />
           </Block>
 

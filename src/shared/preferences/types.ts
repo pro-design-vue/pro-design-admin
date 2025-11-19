@@ -44,6 +44,8 @@ interface AppPreferences {
    * @zh_CN 是否开启refreshToken
    */
   enableRefreshToken: boolean
+  /** 是否开启多语言设置 */
+  enableLanguage: boolean
   /** 是否移动端 */
   isMobile: boolean
   /** 布局方式 */

@@ -2,9 +2,10 @@
  * @Author: shen
  * @Date: 2025-08-21 13:28:16
  * @LastEditors: shen
- * @LastEditTime: 2025-11-06 09:22:44
+ * @LastEditTime: 2025-11-19 15:58:07
  * @Description:
  */
+import type { AxiosResponse } from 'axios'
 import type { RequestClient } from '../request-client'
 import type { RequestClientConfig } from '../types'
 
@@ -15,6 +16,10 @@ type DownloadRequestConfig = {
    * body: 只返回响应数据的BODY部分(Blob)
    */
   responseReturn?: 'body' | 'raw'
+  /**
+   * 立刻下载
+   */
+  // immediate?: boolean
 } & Omit<RequestClientConfig, 'responseReturn'>
 
 class FileDownloader {
@@ -29,7 +34,7 @@ class FileDownloader {
    * @param config 配置信息，可选。
    * @returns 如果config.responseReturn为'body'，则返回Blob(默认)，否则返回RequestResponse<Blob>
    */
-  public async download<T = Blob>(url: string, config?: DownloadRequestConfig): Promise<T> {
+  public async download<T = Blob>(url: string, config?: DownloadRequestConfig): Promise<T | null> {
     const finalConfig: DownloadRequestConfig = {
       responseReturn: 'raw',
       ...config,
@@ -37,7 +42,10 @@ class FileDownloader {
     }
 
     const response = await this.client.get<T>(url, finalConfig)
-
+    const { data } = response as AxiosResponse
+    if (data instanceof Blob && data.type === 'application/json') {
+      return null
+    }
     return response
   }
 }

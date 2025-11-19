@@ -14,6 +14,7 @@ const defaultPreferences: Preferences = {
     enableCheckUpdates: true,
     enablePreferences: true,
     enableRefreshToken: false,
+    enableLanguage: false,
     isMobile: false,
     layout: 'sidebar-nav',
     locale: 'zh-CN',

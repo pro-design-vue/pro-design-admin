@@ -58,7 +58,7 @@ const rightSlots = computed(() => {
       name: 'theme-toggle',
     })
   }
-  if (preferences.widget.languageToggle) {
+  if (preferences.widget.languageToggle && preferences.app.enableLanguage) {
     list.push({
       index: REFERENCE_VALUE + 30,
       name: 'language-toggle',

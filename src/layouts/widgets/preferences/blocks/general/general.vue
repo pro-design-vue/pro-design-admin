@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-25 17:06:49
  * @LastEditors: shen
- * @LastEditTime: 2025-06-25 17:07:03
+ * @LastEditTime: 2025-11-11 17:00:42
  * @Description:
 -->
 <script setup lang="ts">
@@ -20,10 +20,11 @@ const appLocale = defineModel<string>('appLocale')
 const appDynamicTitle = defineModel<boolean>('appDynamicTitle')
 const appWatermark = defineModel<boolean>('appWatermark')
 const appEnableCheckUpdates = defineModel<boolean>('appEnableCheckUpdates')
+const appEnableLanguage = defineModel<boolean>('enableLanguage')
 </script>
 
 <template>
-  <SelectItem v-model="appLocale" :items="SUPPORT_LANGUAGES">
+  <SelectItem v-model="appLocale" :items="SUPPORT_LANGUAGES" v-if="appEnableLanguage">
     {{ $t('preferences.language') }}
   </SelectItem>
   <SwitchItem v-model="appDynamicTitle">

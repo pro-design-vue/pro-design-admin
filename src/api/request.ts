@@ -76,6 +76,15 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   client.addResponseInterceptor({
     fulfilled: async (response) => {
       const { data: responseData } = response
+      if (responseData instanceof Blob) {
+        if (responseData.type === 'application/json') {
+          const text = await responseData.text()
+          const error = JSON.parse(text)
+          message.error(error.message)
+          logger.error(error.code, error.message)
+        }
+        return response
+      }
       if (responseData.code !== 200) {
         message.error(responseData.message)
         logger.error(responseData.code, responseData.message)
@@ -138,3 +147,17 @@ export const mockClient = createRequestClient(genBaseURL(), {
 
 // 返回最原始的axios response，没有任何拦截处理
 export const baseRequestClient = new RequestClient({ baseURL: genBaseURL() })
+
+// 错误处理辅助函数
+export async function to<T>(
+  promise: Promise<ResponseData<T>>,
+): Promise<[Error | null | ResponseData<T>, T | undefined]> {
+  return promise
+    .then<[null, T] | [ResponseData<T>, undefined]>((result: ResponseData<T>) => {
+      if (result.code === 200) {
+        return [null, result.data] as [null, T]
+      }
+      return [result, undefined] as [ResponseData<T>, undefined]
+    })
+    .catch<[Error, undefined]>((err) => [err, undefined])
+}

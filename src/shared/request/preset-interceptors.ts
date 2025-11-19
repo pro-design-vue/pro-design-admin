@@ -155,8 +155,21 @@ export const errorMessageResponseInterceptor = (
           errorMessage = $t('ui.fallback.http.internalServerError')
         }
       }
-      makeErrorMessage?.(errorMessage, error)
-      return Promise.reject(error)
+      if (
+        error.response &&
+        error.response.data instanceof Blob &&
+        error.response.data.type === 'application/json'
+      ) {
+        error.response.data.text().then((text) => {
+          const json = JSON.parse(text)
+          error.response.data = json
+          makeErrorMessage?.(errorMessage, error)
+          return Promise.reject(error)
+        })
+      } else {
+        makeErrorMessage?.(errorMessage, error)
+        return Promise.reject(error)
+      }
     },
   }
 }

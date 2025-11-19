@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-26 14:54:39
  * @LastEditors: shen
- * @LastEditTime: 2025-06-26 15:45:23
+ * @LastEditTime: 2025-11-11 17:02:49
  * @Description:
 -->
 <script setup lang="ts">
@@ -45,7 +45,9 @@ const showTheme = computed(() => props.toolbarList.includes('theme'))
       <AuthenticationLayoutToggle v-if="showLayout" />
     </div>
     <!-- Always show Language and Theme toggles -->
-    <LanguageToggle v-if="showLanguage && preferences.widget.languageToggle" />
+    <LanguageToggle
+      v-if="showLanguage && preferences.widget.languageToggle && preferences.app.enableLanguage"
+    />
     <ThemeToggle v-if="showTheme && preferences.widget.themeToggle" />
   </div>
 </template>
