@@ -117,6 +117,10 @@ const handleLogout = () => {
   })
 }
 
+const getPopupContainer = () => {
+  return document.body
+}
+
 if (enableShortcutKey.value) {
   const keys = useMagicKeys()
   whenever(keys['Alt+KeyQ']!, () => {
@@ -144,6 +148,7 @@ if (enableShortcutKey.value) {
   <Popover
     v-model:open="visible"
     :trigger="[props.trigger]"
+    :getPopupContainer
     :overlayInnerStyle="{ padding: 0 }"
     :arrow="false"
     placement="bottomRight"

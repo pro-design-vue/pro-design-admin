@@ -65,14 +65,14 @@ const showTheme = computed(() => props.toolbarList.includes('theme'))
   background-color: hsl(var(--pro-accent));
   border-radius: 24px;
 
+  &-hidden {
+    display: none;
+  }
+
   @media (min-width: 768px) {
     .authentication-toolbar-hidden {
       display: flex !important;
     }
-  }
-
-  &-hidden {
-    display: none;
   }
 }
 </style>

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-17 11:22:48
  * @LastEditors: shen
- * @LastEditTime: 2025-07-26 20:43:58
+ * @LastEditTime: 2025-11-20 08:56:52
  * @Description:
 -->
 <script setup lang="ts">
@@ -32,12 +32,16 @@ async function handleUpdate(e) {
   window.location.reload()
 }
 
+const getPopupContainer = () => {
+  return document.body
+}
+
 const menuItems = SUPPORT_LANGUAGES.map((item) => ({ label: item.label, key: item.value }))
 </script>
 
 <template>
   <div>
-    <Dropdown :trigger="['click']">
+    <Dropdown :trigger="['click']" :getPopupContainer>
       <Button shape="circle" type="text" style="font-size: 16px; color: hsl(var(--pro-foreground))">
         <template #icon>
           <LanguagesIcon />

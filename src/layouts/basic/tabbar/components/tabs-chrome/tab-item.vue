@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-22 11:54:26
  * @LastEditors: shen
- * @LastEditTime: 2025-06-22 16:07:41
+ * @LastEditTime: 2025-11-20 08:56:36
  * @Description:
 -->
 <script setup lang="ts">
@@ -57,6 +57,10 @@ const handleClick = ({ key }) => {
   handler?.()
 }
 
+const getPopupContainer = () => {
+  return document.body
+}
+
 watchEffect(() => {
   menus.value.forEach((item) => {
     handleMap.set(item.key, item.handler)
@@ -65,7 +69,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <Dropdown :trigger="['contextmenu']">
+  <Dropdown :trigger="['contextmenu']" :getPopupContainer>
     <div class="layout-tabs-item-wrap">
       <slot />
       <!-- extra -->

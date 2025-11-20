@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-26 15:24:41
  * @LastEditors: shen
- * @LastEditTime: 2025-09-02 15:51:07
+ * @LastEditTime: 2025-11-20 08:57:04
  * @Description:
 -->
 <script setup lang="ts">
@@ -58,10 +58,14 @@ function handleUpdate(e) {
     },
   })
 }
+
+const getPopupContainer = () => {
+  return document.body
+}
 </script>
 
 <template>
-  <Dropdown :trigger="['click']">
+  <Dropdown :trigger="['click']" :getPopupContainer>
     <ProButton
       shape="circle"
       type="text"

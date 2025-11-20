@@ -39,6 +39,10 @@ function close() {
   open.value = false
 }
 
+const getPopupContainer = () => {
+  return document.body
+}
+
 function handleViewAll() {
   emit('viewAll')
   close()
@@ -59,6 +63,7 @@ function handleClick(item: NotificationItem) {
 <template>
   <Popover
     :trigger="['click']"
+    :getPopupContainer
     :overlayInnerStyle="{ padding: 0 }"
     :arrow="false"
     placement="bottomRight"

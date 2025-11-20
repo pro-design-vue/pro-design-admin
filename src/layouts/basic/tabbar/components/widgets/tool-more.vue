@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-06-22 09:20:36
  * @LastEditors: shen
- * @LastEditTime: 2025-06-22 14:05:42
+ * @LastEditTime: 2025-11-20 08:56:20
  * @Description:
 -->
 <script lang="ts" setup>
@@ -39,10 +39,19 @@ const handleClick = ({ key }) => {
   const handler = handleMap.get(key)
   handler?.()
 }
+
+const getPopupContainer = () => {
+  return document.body
+}
 </script>
 
 <template>
-  <Dropdown :trigger="['click']" placement="bottom" overlayClassName="layout-tabbar-tool-more">
+  <Dropdown
+    :trigger="['click']"
+    :getPopupContainer
+    placement="bottom"
+    overlayClassName="layout-tabbar-tool-more"
+  >
     <div class="layout-tabbar-tool-more-btn">
       <ChevronDownIcon />
     </div>
