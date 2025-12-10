@@ -2,19 +2,20 @@
  * @Author: shen
  * @Date: 2025-06-18 15:59:23
  * @LastEditors: shen
- * @LastEditTime: 2025-10-17 13:13:46
+ * @LastEditTime: 2025-12-10 10:04:24
  * @Description:
 -->
 <script setup lang="ts">
 import type { MenuRecordRaw } from '@/typings'
 import type { ItemType, MenuProps } from 'ant-design-vue'
 
-import { Menu } from 'ant-design-vue'
-import { computed, h, ref, watch } from 'vue'
+import { Menu, ConfigProvider } from 'ant-design-vue'
+import { computed, h, ref, useAttrs, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ProIcon } from '@/components/common'
 import { cloneDeep, findMenuByPath, mapTree } from '@/shared/utils'
 import { $t } from '@/locales'
+import config from '@/config'
 
 interface Props extends Omit<MenuProps, 'items' | 'onSelect' | 'onOpenChange'> {
   defaultActive?: string
@@ -35,6 +36,7 @@ const emit = defineEmits<{
   select: [string, string?]
 }>()
 
+const attrs = useAttrs()
 const route = useRoute()
 const items = ref<ItemType[]>([])
 const openKeys = ref<string[]>([])
@@ -73,6 +75,10 @@ const handleMenuOpen: MenuProps['onOpenChange'] = (keys) => {
     }
   }
   openKeys.value = newOpenKeys
+}
+
+const getPopupContainer = () => {
+  return document.body
 }
 
 watch(
@@ -122,15 +128,18 @@ watch(
 </script>
 
 <template>
-  <Menu
-    class="layout-menu"
-    :items
-    :class="theme"
-    :mode="mode"
-    :inline-collapsed="collapsed"
-    :selected-keys="selectedKeys"
-    :open-keys="mode === 'inline' && !collapsed ? openKeys : []"
-    @select="handleMenuSelect"
-    @open-change="handleMenuOpen"
-  />
+  <ConfigProvider :getPopupContainer :prefix-cls="config.antdPrefixCls">
+    <Menu
+      class="layout-menu"
+      v-bind="attrs"
+      :items
+      :class="theme"
+      :mode="mode"
+      :inline-collapsed="collapsed"
+      :selected-keys="selectedKeys"
+      :open-keys="mode === 'inline' && !collapsed ? openKeys : []"
+      @select="handleMenuSelect"
+      @open-change="handleMenuOpen"
+    />
+  </ConfigProvider>
 </template>
