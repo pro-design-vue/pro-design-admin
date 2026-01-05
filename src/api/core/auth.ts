@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 13:41:56
  * @LastEditors: shen
- * @LastEditTime: 2025-08-22 14:56:45
+ * @LastEditTime: 2026-01-05 09:10:51
  * @Description:
  */
 import type { AppData, AuthSigninParams, AuthSigninResult, MenuData, UserData } from '@/typings'
@@ -20,11 +20,6 @@ export async function refreshTokenApi() {
     withCredentials: true,
   })
 }
-
-export const getPublicConfig = () =>
-  requestClient.get<ResponseData<{ id: string }>>(
-    `${BASE_PATH}/applications/4c47f02b-3c61-4c57-89ab-11b01e4a3466/public-config`,
-  )
 
 export const authLoginApi = (params: AuthSigninParams) =>
   mockClient.post<ResponseData<AuthSigninResult>>(`${BASE_PATH}/login`, params)

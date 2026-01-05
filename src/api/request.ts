@@ -25,6 +25,12 @@ export interface ResponseData<T = any> {
   [key: string]: any
 }
 
+const fieldNames = {
+  codeField: 'code',
+  dataField: 'data',
+  successCode: 200,
+}
+
 function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   const client = new RequestClient({
     ...options,
@@ -94,13 +100,7 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   })
 
   // 处理返回的响应数据格式
-  client.addResponseInterceptor(
-    defaultResponseInterceptor({
-      codeField: 'code',
-      dataField: 'data',
-      successCode: 200,
-    }),
-  )
+  client.addResponseInterceptor(defaultResponseInterceptor(fieldNames))
 
   // token过期的处理
   client.addResponseInterceptor(
@@ -149,12 +149,12 @@ export const mockClient = createRequestClient(genBaseURL(), {
 export const baseRequestClient = new RequestClient({ baseURL: genBaseURL() })
 
 // 错误处理辅助函数
-export async function to<T>(
+export async function to<T = any>(
   promise: Promise<ResponseData<T>>,
 ): Promise<[Error | null | ResponseData<T>, T | undefined]> {
   return promise
     .then<[null, T] | [ResponseData<T>, undefined]>((result: ResponseData<T>) => {
-      if (result.code === 200) {
+      if (result[fieldNames.codeField] === fieldNames.successCode) {
         return [null, result.data] as [null, T]
       }
       return [result, undefined] as [ResponseData<T>, undefined]

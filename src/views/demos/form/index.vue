@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-27 16:33:00
  * @LastEditors: shen
- * @LastEditTime: 2025-10-20 16:28:18
+ * @LastEditTime: 2026-01-05 09:10:39
  * @Description:
 -->
 <script setup lang="ts">
@@ -17,7 +17,6 @@ import {
   type ProFormItemType,
   type ProQueryFilterInstance,
 } from 'pro-design-vue'
-import { getPublicConfig } from '@/api'
 import { sleep } from '@/shared/utils'
 import { Card, Image } from 'ant-design-vue'
 import { useApplication } from '@/hooks'
@@ -26,13 +25,6 @@ import { useRouter } from 'vue-router'
 const mounted = false
 
 const router = useRouter()
-
-onMounted(async () => {
-  console.log('onMounted')
-  // mounted = true
-  // const resut = await getPublicConfig()
-  // console.log('🚀 ~ onMounted ~ resut:', resut.data.id)
-})
 
 const { onActivated, onDeactivated } = useApplication()
 
