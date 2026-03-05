@@ -277,6 +277,14 @@ export const useTabbarStore = defineStore('tabbar', {
     },
 
     /**
+     * @zh_CN 清除所有标签页
+     */
+    async clearAllTabs() {
+      this.tabs = []
+      this.updateCacheTabs()
+    },
+
+    /**
      * 根据路径获取标签页
      * @param path
      */

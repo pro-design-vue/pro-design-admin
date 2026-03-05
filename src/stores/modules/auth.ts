@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2025-05-28 14:28:18
  * @LastEditors: shen
- * @LastEditTime: 2025-10-19 18:42:55
+ * @LastEditTime: 2026-01-15 10:13:20
  * @Description:
  */
 import type { MenuData, MenuRecordRaw, UserData } from '@/typings'
@@ -303,7 +303,8 @@ export const useAuthStore = defineStore<string, AuthState>(
       // }
       resetAllStores()
       setLoginExpired(false)
-
+      // 此处退出登录删除标签页，如果不需要请删除代码
+      tabbarStore.clearAllTabs()
       // 回登录页带上当前路由地址
       await router.replace({
         path: LOGIN_PATH,
