@@ -19,7 +19,7 @@ const userConfig = {
   extends: ['@commitlint/config-conventional'],
   plugins: ['commitlint-plugin-function-rules'],
   prompt: {
-    /** @use `pnpm commit :f` */
+    /** @use `npm run commit` */
     alias: {
       b: 'build: bump dependencies',
       c: 'chore: update config',

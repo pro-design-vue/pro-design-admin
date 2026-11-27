@@ -45,23 +45,23 @@ Pro Design Admin 是一个免费开源的中后台模板，它采用了最新的
 git clone https://github.com/pro-design-vue/pro-design-admin.git
 ```
 
-2. 安装依赖
+2. 安装依赖（支持 npm、pnpm、yarn、bun 等工具）
 
 ```bash
 cd pro-design-admin
-pnpm install
+npm install # 或：pnpm install / yarn / bun install
 ```
 
 3. 运行
 
 ```bash
-pnpm dev
+npm run dev # 或：pnpm dev / yarn dev / bun run dev
 ```
 
 4. 打包
 
 ```bash
-pnpm build
+npm run build # 或：pnpm build / yarn build / bun run build
 ```
 
 ## Git 贡献提交规范

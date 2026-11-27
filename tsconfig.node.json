@@ -16,6 +16,7 @@
     "noImplicitAny": false,
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
     "types": ["node"]
   }
 }

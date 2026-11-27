@@ -5,7 +5,6 @@
  * @LastEditTime: 2025-09-08 16:07:35
  * @Description:
  */
-import type { NormalizedOutputOptions, OutputBundle, OutputChunk } from 'rollup'
 import type { PluginOption } from 'vite'
 
 import { EOL } from 'node:os'
@@ -20,7 +19,7 @@ function viteLicensePlugin(): PluginOption | undefined {
     apply: 'build',
     enforce: 'post',
     generateBundle: {
-      handler: (_options: NormalizedOutputOptions, bundle: OutputBundle) => {
+      handler: (_options, bundle) => {
         const copyrightText = `/*!
   * Pro Design Admin
   * Author: shene
@@ -30,15 +29,10 @@ function viteLicensePlugin(): PluginOption | undefined {
 */
               `.trim()
 
-        for (const [, fileContent] of Object.entries(bundle)) {
+        for (const fileContent of Object.values(bundle)) {
           if (fileContent.type === 'chunk' && fileContent.isEntry) {
-            const chunkContent = fileContent as OutputChunk
             // 插入版权信息
-            const content = chunkContent.code
-            const updatedContent = `${copyrightText}${EOL}${content}`
-
-            // 更新bundle
-            ;(fileContent as OutputChunk).code = updatedContent
+            fileContent.code = `${copyrightText}${EOL}${fileContent.code}`
           }
         }
       },

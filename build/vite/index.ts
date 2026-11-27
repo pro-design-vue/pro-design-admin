@@ -6,11 +6,11 @@
  * @Description:
  */
 import { loadEnv } from 'vite'
-import { parseEnv } from './util'
+import { parseEnv } from './util.ts'
 import { fileURLToPath, URL } from 'node:url'
-import { createProxy } from './proxy'
-import { createPlugins } from './plugin'
-import { VITE_OUTPUT_DIR } from './constant'
+import { createProxy } from './proxy.ts'
+import { createPlugins } from './plugin/index.ts'
+import { VITE_OUTPUT_DIR } from './constant.ts'
 
 import type { ConfigEnv } from 'vite'
 
@@ -44,7 +44,7 @@ export const createViteConfig = async (root: string, { command, mode }: ConfigEn
         strict: false,
       },
     },
-    esbuild: {
+    oxc: {
       drop: VITE_DROP_CONSOLE ? ['console', 'debugger'] : [],
     },
     build: {

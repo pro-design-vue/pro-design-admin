@@ -45,23 +45,23 @@ Pro Design Admin is a free and open source middle and back-end template. Using t
 git clone https://github.com/pro-design-vue/pro-design-admin.git
 ```
 
-2. Install dependencies
+2. Install dependencies (npm, pnpm, yarn or bun are all supported)
 
 ```bash
 cd pro-design-admin
-pnpm install
+npm install # or: pnpm install / yarn / bun install
 ```
 
 3. Run
 
 ```bash
-pnpm dev
+npm run dev # or: pnpm dev / yarn dev / bun run dev
 ```
 
 4. Build
 
 ```bash
-pnpm build
+npm run build # or: pnpm build / yarn build / bun run build
 ```
 
 ## Git Contribution Submission Specification

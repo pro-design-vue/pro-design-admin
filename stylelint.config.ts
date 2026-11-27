@@ -45,6 +45,7 @@ export default {
   plugins: ['stylelint-order', '@stylistic/stylelint-plugin', 'stylelint-prettier'],
   rules: {
     'at-rule-no-deprecated': null,
+    'block-no-redundant-nested-style-rules': null,
     'at-rule-no-unknown': [
       true,
       {

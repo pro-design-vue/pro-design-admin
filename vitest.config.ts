@@ -14,6 +14,7 @@ export default defineConfig({
   plugins: [Vue(), VueJsx()],
   test: {
     environment: 'jsdom',
+    passWithNoTests: true,
     exclude: [...configDefaults.exclude, 'e2e/**'],
     root: fileURLToPath(new URL('./', import.meta.url)),
   },

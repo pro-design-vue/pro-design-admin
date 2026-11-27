@@ -14,32 +14,17 @@ jobs:
           ref: ${{ github.event.workflow_run.head_sha }}
           persist-credentials: false
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          cache: npm
 
       - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+        run: npm ci
 
       - name: Build website
-        run: pnpm build:github
+        run: npm run build:github
         env:
           NODE_OPTIONS: --max-old-space-size=4096
 

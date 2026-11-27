@@ -1,21 +1,21 @@
 FROM node:22 AS builder
 
 # --max-old-space-size
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
 ENV NODE_OPTIONS=--max-old-space-size=8192
 ENV TZ=Asia/Shanghai
-
-RUN npm i -g corepack
+ENV LEFTHOOK=0
 
 WORKDIR /app
 
-# copy package.json and pnpm-lock.yaml to workspace
-COPY . /app
+# copy manifests first to leverage the docker layer cache
+COPY package.json package-lock.json ./
 
 # 安装依赖
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build
+RUN --mount=type=cache,id=npm,target=/root/.npm npm ci --no-audit --no-fund
+
+COPY . /app
+
+RUN npm run build
 
 RUN echo "Builder Success 🎉"
 

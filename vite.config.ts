@@ -6,10 +6,10 @@
  * @Description:
  */
 import { defineConfig, loadEnv, mergeConfig } from 'vite'
-import { createViteConfig } from './build'
+import { createViteConfig } from './build/index.ts'
 
 import type { ConfigEnv } from 'vite'
-import { parseEnv } from './build/vite/util'
+import { parseEnv } from './build/vite/util.ts'
 
 export default defineConfig(async ({ command, mode }: ConfigEnv) => {
   const root = process.cwd()

@@ -25,8 +25,8 @@ function remove_image() {
 
 function install_dependencies() {
 	# Install all dependencies
-	cd ${SCRIPT_DIR}
-	pnpm install || ERROR="install_dependencies failed"
+	cd ${SCRIPT_DIR}/../..
+	npm ci --no-audit --no-fund || ERROR="install_dependencies failed"
 }
 
 function build_image() {
