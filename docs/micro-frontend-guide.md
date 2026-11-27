@@ -9,18 +9,18 @@
 - 子应用来源：由后端菜单下发 `microUrl`，指向独立部署的子应用地址；本仓库不内置子应用源码。
 - 关键目录：
 
-| 路径 | 职责 |
-| --- | --- |
-| `src/bootstrap.ts` | 主应用入口：初始化偏好、i18n、Pinia、路由，启动 `microApp` |
-| `src/micro.ts` | 子应用入口：创建独立 Vue 实例，暴露 `mount` / `unmount` |
-| `src/main.ts` | 双模式分发：根据 `window.__MICRO_APP_ENVIRONMENT__` 选择入口 |
-| `src/config/index.ts` | 运行模式判定（`isMainApp` / `powerByMicro` / `baseRoute`） |
-| `src/layouts/micro/micro-view.vue` | 微应用容器，渲染 `<micro-app>` 并下发数据 |
-| `src/layouts/micro/micro-router-view.vue` | 多个微应用 tab 的渲染与保活 |
-| `src/router/guard.ts` | 动态路由生成后触发微应用预加载 |
-| `src/shared/utils/prefetch-micro.ts` | 微应用空闲预加载工具 |
-| `src/hooks/useApplication` | 主子统一 activated/deactivated 生命周期 |
-| `public/empty.html` | iframe 模式使用的空白占位页 |
+| 路径                                      | 职责                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| `src/bootstrap.ts`                        | 主应用入口：初始化偏好、i18n、Pinia、路由，启动 `microApp`   |
+| `src/micro.ts`                            | 子应用入口：创建独立 Vue 实例，暴露 `mount` / `unmount`      |
+| `src/main.ts`                             | 双模式分发：根据 `window.__MICRO_APP_ENVIRONMENT__` 选择入口 |
+| `src/config/index.ts`                     | 运行模式判定（`isMainApp` / `powerByMicro` / `baseRoute`）   |
+| `src/layouts/micro/micro-view.vue`        | 微应用容器，渲染 `<micro-app>` 并下发数据                    |
+| `src/layouts/micro/micro-router-view.vue` | 多个微应用 tab 的渲染与保活                                  |
+| `src/router/guard.ts`                     | 动态路由生成后触发微应用预加载                               |
+| `src/shared/utils/prefetch-micro.ts`      | 微应用空闲预加载工具                                         |
+| `src/hooks/useApplication`                | 主子统一 activated/deactivated 生命周期                      |
+| `public/empty.html`                       | iframe 模式使用的空白占位页                                  |
 
 ## 2. 快速开始
 
@@ -55,13 +55,13 @@ baseRoute: window.__MICRO_APP_BASE_ROUTE__ || VITE_PUBLIC_PATH,
 
 在后端菜单数据中为微应用页面配置以下字段（见 `src/router/access.ts`、`src/typings/data/menu.ts`）：
 
-| 字段 | 说明 |
-| --- | --- |
-| `microUrl` | 子应用入口地址，如 `http://localhost:8095/`。有该值即被识别为微应用路由 |
-| `appName` | 应用标识，用于生成路由前缀 `/${appName}`、容器 `baseroute` 和 `name` |
-| `keepAlive` | 是否保活。开启后该 tab 参与 LRU 保活（见 4.3），切换不丢状态；关闭后非激活即销毁 |
-| `componentPath` | 可选。指定子应用内页面组件路径，子应用通过 `import.meta.glob` 查找 |
-| `title` / `icon` | 菜单标题与图标 |
+| 字段             | 说明                                                                             |
+| ---------------- | -------------------------------------------------------------------------------- |
+| `microUrl`       | 子应用入口地址，如 `http://localhost:8095/`。有该值即被识别为微应用路由          |
+| `appName`        | 应用标识，用于生成路由前缀 `/${appName}`、容器 `baseroute` 和 `name`             |
+| `keepAlive`      | 是否保活。开启后该 tab 参与 LRU 保活（见 4.3），切换不丢状态；关闭后非激活即销毁 |
+| `componentPath`  | 可选。指定子应用内页面组件路径，子应用通过 `import.meta.glob` 查找               |
+| `title` / `icon` | 菜单标题与图标                                                                   |
 
 路由生成时会自动把微应用路径改写为 `/${appName}${path}`（`src/router/access.ts:110-112`）。
 
@@ -141,34 +141,34 @@ props.router.push(`${props.baseroute}${to.path}`)
 
 `micro-view.vue` 下发的字段及用途：
 
-| 字段 | 用途 |
-| --- | --- |
-| `appName` / `microName` / `tabName` | 应用与 tab 标识 |
-| `path` | 子应用当前路径（已去掉 `/${appName}` 前缀） |
-| `baseroute` | 子应用路由基础路径 |
-| `url` | 子应用入口地址 |
-| `preferences` | 偏好设置，子应用合并为本地配置 |
-| `accessToken` / `userInfo` | 登录态，子应用注入 auth store |
-| `locale` / `theme` | 语言与主题 |
-| `contentOffsetTop` | 布局顶部偏移 |
-| `actived` | 当前 tab 是否激活 |
-| `route` | 精简后的路由信息：`{ name, path, meta }` |
-| `router` | 精简后的路由代理：`{ push }`，仅用于回写宿主路由 |
+| 字段                                | 用途                                             |
+| ----------------------------------- | ------------------------------------------------ |
+| `appName` / `microName` / `tabName` | 应用与 tab 标识                                  |
+| `path`                              | 子应用当前路径（已去掉 `/${appName}` 前缀）      |
+| `baseroute`                         | 子应用路由基础路径                               |
+| `url`                               | 子应用入口地址                                   |
+| `preferences`                       | 偏好设置，子应用合并为本地配置                   |
+| `accessToken` / `userInfo`          | 登录态，子应用注入 auth store                    |
+| `locale` / `theme`                  | 语言与主题                                       |
+| `contentOffsetTop`                  | 布局顶部偏移                                     |
+| `actived`                           | 当前 tab 是否激活                                |
+| `route`                             | 精简后的路由信息：`{ name, path, meta }`         |
+| `router`                            | 精简后的路由代理：`{ push }`，仅用于回写宿主路由 |
 
 > 优化说明：早期版本传递完整的 `RouteLocation` 与 Vue Router 实例；现已改为最小字段与 `push` 代理，避免 `matched` 树和 Router 实例跨 iframe 传递，功能保持不变。
 
 ## 7. 性能相关配置
 
-| 配置 | 位置 | 说明 |
-| --- | --- | --- |
-| 微应用预加载 | `src/shared/utils/prefetch-micro.ts` | 菜单就绪后空闲预加载，缩短首次进入等待 |
-| 默认分片 | `build/vite/index.ts` | 保留 Rolldown/Vite 默认分片，实测最大 chunk 约 665KB；强制 `manualChunks` 反而会产生 1.4MB+ 的 UI chunk |
-| Chunk 警告阈值 | `build/vite/index.ts` `chunkSizeWarningLimit: 1000` | 超过 1MB 提示，便于发现过大 chunk |
-| Hydration 提示关闭 | `build/vite/index.ts` `define` | 项目为纯 SPA，关闭无用的生产提示代码 |
-| 移除 console | `.env.production` `VITE_DROP_CONSOLE = true` | 构建时用 `oxc.drop` 移除 `console` / `debugger` |
-| gzip 压缩 | `.env.production` `VITE_BUILD_COMPRESS = 'gzip'` | 生成 `.gz` 文件；**需服务端开启 `Content-Encoding: gzip`** |
-| 体积分析 | `.env.analyze` + `npm run build:analyze` | 生成 `dist/stats.html` |
-| Mock | `.env.production` `VITE_REQUEST_MOCK = true` | 演示站依赖 Mock 提供登录/菜单数据；接入真实后端时改为 `false`，否则登录流程会失效 |
+| 配置               | 位置                                                | 说明                                                                                                    |
+| ------------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| 微应用预加载       | `src/shared/utils/prefetch-micro.ts`                | 菜单就绪后空闲预加载，缩短首次进入等待                                                                  |
+| 默认分片           | `build/vite/index.ts`                               | 保留 Rolldown/Vite 默认分片，实测最大 chunk 约 665KB；强制 `manualChunks` 反而会产生 1.4MB+ 的 UI chunk |
+| Chunk 警告阈值     | `build/vite/index.ts` `chunkSizeWarningLimit: 1000` | 超过 1MB 提示，便于发现过大 chunk                                                                       |
+| Hydration 提示关闭 | `build/vite/index.ts` `define`                      | 项目为纯 SPA，关闭无用的生产提示代码                                                                    |
+| 移除 console       | `.env.production` `VITE_DROP_CONSOLE = true`        | 构建时用 `oxc.drop` 移除 `console` / `debugger`                                                         |
+| gzip 压缩          | `.env.production` `VITE_BUILD_COMPRESS = 'gzip'`    | 生成 `.gz` 文件；**需服务端开启 `Content-Encoding: gzip`**                                              |
+| 体积分析           | `.env.analyze` + `npm run build:analyze`            | 生成 `dist/stats.html`                                                                                  |
+| Mock               | `.env.production` `VITE_REQUEST_MOCK = true`        | 演示站依赖 Mock 提供登录/菜单数据；接入真实后端时改为 `false`，否则登录流程会失效                       |
 
 ## 8. 常见问题
 

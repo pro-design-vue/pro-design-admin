@@ -8,12 +8,12 @@
 
 **在当前项目架构下，不能简单去掉 iframe。** 三种替代方案均失败或带来更严重问题：
 
-| 方案 | 结果 | JS 堆内存 | 原因 |
-| --- | --- | --- | --- |
-| **iframe 模式（当前）** | ✅ 3 个子应用正常加载 | **68.1 MB** | 基准 |
-| shadow DOM（默认沙箱） | ❌ 加载失败 | 24.6 MB（假象，子应用未加载） | ESM 脚本被 Function 执行，报 `Cannot use import statement outside a module` |
-| shadow DOM + `disable-sandbox` | ❌ 主应用崩溃 | — | 无沙箱隔离后子应用污染全局，主应用 DOM 空白 |
-| shadow DOM + `inline` | ❌ 加载失败 | 23.6 MB（假象） | 同样 ESM 报错，且出现 `element micro-app is already defined` |
+| 方案                           | 结果                  | JS 堆内存                     | 原因                                                                        |
+| ------------------------------ | --------------------- | ----------------------------- | --------------------------------------------------------------------------- |
+| **iframe 模式（当前）**        | ✅ 3 个子应用正常加载 | **68.1 MB**                   | 基准                                                                        |
+| shadow DOM（默认沙箱）         | ❌ 加载失败           | 24.6 MB（假象，子应用未加载） | ESM 脚本被 Function 执行，报 `Cannot use import statement outside a module` |
+| shadow DOM + `disable-sandbox` | ❌ 主应用崩溃         | —                             | 无沙箱隔离后子应用污染全局，主应用 DOM 空白                                 |
+| shadow DOM + `inline`          | ❌ 加载失败           | 23.6 MB（假象）               | 同样 ESM 报错，且出现 `element micro-app is already defined`                |
 
 **内存从 68MB 降到 24MB 是假象**——子应用根本没渲染出来。
 
