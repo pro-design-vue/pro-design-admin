@@ -1,4 +1,7 @@
 import { execSync } from 'node:child_process'
+import type { Rule } from '@commitlint/types'
+
+type Commit = Parameters<Rule>[0]
 
 const allowedScopes = ['project', 'style', 'lint', 'ci', 'dev', 'deploy', 'other']
 
@@ -93,7 +96,7 @@ const userConfig = {
     'function-rules/scope-enum': [
       2, // level: error
       'always',
-      (parsed) => {
+      (parsed: Commit) => {
         if (!parsed.scope || allowedScopes.includes(parsed.scope)) {
           return [true]
         }
