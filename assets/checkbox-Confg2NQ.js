@@ -1,0 +1,1 @@
+import{n as e,t}from"./Group-CJSEjmuH.js";e.Group=t,e.install=function(n){return n.component(e.name,e),n.component(t.name,t),n};var n=e;export{n as t};

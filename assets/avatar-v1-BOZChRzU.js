@@ -1,0 +1,1 @@
+var e=`/assets/avatar-v1-DgoLk7_G.webp`;export{e as t};

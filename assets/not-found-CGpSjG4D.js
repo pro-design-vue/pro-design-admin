@@ -1,0 +1,1 @@
+import{Mn as e,gr as t,pn as n,rn as r}from"./index-DpQ7yx3b.js";import{t as i}from"./common-BYyvkV1S.js";import{W as a}from"./styles-R399MXzg.js";var o=n({__name:`not-found`,setup(n){let o=a(),s=()=>{o.push(`/`)};return(n,a)=>(e(),r(t(i),{status:`404`,onBack:s}))}});export{o as default};

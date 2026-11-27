@@ -1,0 +1,1 @@
+import{Mn as e,an as t}from"./index-DpQ7yx3b.js";import{t as n}from"./plugin-vueexport-helper-BDNMzG2s.js";var r={};function i(n,r){return e(),t(`div`,null,`demos111`)}var a=n(r,[[`render`,i]]);export{a as default};
