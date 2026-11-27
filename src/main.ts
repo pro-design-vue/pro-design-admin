@@ -5,7 +5,8 @@
  * @LastEditTime: 2025-08-25 17:18:46
  * @Description:
  */
-import { unmountGlobalLoading, createNamespace } from './shared/utils'
+import { unmountGlobalLoading } from './shared/utils/unmount-global-loading'
+import { createNamespace } from './shared/utils/namespace'
 import { initPreferences } from './shared/preferences'
 import { overridesPreferences } from './preferences'
 import config from './config'

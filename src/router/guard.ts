@@ -8,6 +8,7 @@
 import type { Router } from 'vue-router'
 
 import { cloneDeep, startProgress, stopProgress } from '@/shared/utils'
+import { prefetchMicroApps } from '@/shared/utils/prefetch-micro'
 import { accessRoutes, coreRouteNames } from './routes'
 import { LOGIN_PATH } from '@/shared/constants'
 import { generateAccess } from './access'
@@ -118,6 +119,8 @@ const setupAccessGuard = (router: Router) => {
       routes: accessRoutes,
     })
     authStore.setIsAccessChecked(true)
+    // 菜单就绪后空闲预加载微应用资源，缩短首次进入等待时间
+    prefetchMicroApps(originMenus)
 
     const redirectPath = (from.query.redirect ??
       (to.path === preferences.app.defaultHomePath

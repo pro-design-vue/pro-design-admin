@@ -44,8 +44,16 @@ const microData = computed(() => ({
   theme: toRaw(preferences.theme),
   url: props.tab.meta.microUrl,
   baseroute: `/${props.tab.meta.appName}`,
-  route: toRaw(route),
-  router,
+  // 只传递子应用构建路由所需的字段，避免整条 RouteLocation（含 matched 树）跨 iframe 传递
+  route: {
+    name: route.name,
+    path: route.path,
+    meta: toRaw(route.meta),
+  },
+  // 子应用仅需回写宿主路由的 push 能力，不传递整个 Router 实例
+  router: {
+    push: (path: string) => router.push(path),
+  },
 }))
 const handleError = () => {
   loading.value = false

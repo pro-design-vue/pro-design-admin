@@ -27,8 +27,8 @@ export const createViteConfig = async (root: string, { command, mode }: ConfigEn
     root,
     base: viteEnv.VITE_PUBLIC_PATH,
     define: {
-      // enable hydration mismatch details in production build
-      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
+      // 纯 SPA 无 SSR，关闭生产包中无用的 hydration 差异提示代码
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false',
     },
     resolve: {
       alias: {
@@ -51,7 +51,7 @@ export const createViteConfig = async (root: string, { command, mode }: ConfigEn
       // target: 'esnext',
       cssTarget: 'chrome80',
       outDir: VITE_OUTPUT_DIR,
-      chunkSizeWarningLimit: 2000,
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           // https://github.com/rollup/rollup/blob/master/src/utils/sanitizeFileName.ts

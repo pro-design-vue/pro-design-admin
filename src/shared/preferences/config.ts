@@ -130,6 +130,7 @@ const defaultPreferences: Preferences = {
     path: '',
     tabName: '',
     actived: false,
+    maxKeepAliveTabs: 10,
   },
 }
 

@@ -273,6 +273,8 @@ interface MicroPreferences {
   tabName: string
   /** 是否时激活显示状态 */
   actived: boolean
+  /** 最多保活的微应用tab数量，0表示不限制（LRU自动淘汰最久未访问的） */
+  maxKeepAliveTabs: number
 }
 
 interface Preferences {
